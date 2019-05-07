@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">The Money Tree</string>
+    <!--Common-->
+    <string name="loading">Loading....</string>
+    <string name="pleaseWait">Please Wait</string>
+
+    <string name="uploadImages">Set your image</string>
+    <string name="buffering_string">Buffering&#8230;</string>
+    <string name="playbackComplete">Playback completed.</string>
+    <string name="pickFile">Pick file</string>
+    <string name="uploadFile">Upload file</string>
+    <string name="toastPickFileError">Unable to pick file. Check status of file manager.</string>
+
+    <!--Common-->
+
     <!--Login Screen Starts-->
     <string name="login_button">Sign In</string>
     <string name="user_name">User Name (Email)</string>
@@ -11,5 +24,15 @@
     <string name="no_input_msg_id">Please Enter Login ID</string>
     <string name="err_msg_server">Server Error</string>
     <string name="err_msg_wrong_details_server">Username/Password is incorrect</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_about_us">About Us</string>
+    <string name="nav_privacy_policy">Privacy Policy</string>
+    <string name="nav_sign_out">Sign Out</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+    <string name="granted_permission">Granted Permission</string>
+    <string name="forgotPasswordMsg">Please Enter UserName here to receive temporary password in your email</string>
+    <string name="resetPassword">Reset Password</string>
+    <string name="backtoLoginScreen">Back</string>
     <!--Login Screen Ends-->
 </resources>

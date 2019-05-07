@@ -186,7 +186,7 @@ public class CommonUtils {
 
 
     public static String subscribeToFirebaseTopic(String topic) {
-        String msg = null;
+        String msg = null;/*
         FirebaseMessaging.getInstance().subscribeToTopic(topic)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -198,8 +198,8 @@ public class CommonUtils {
                         Log.d(TAG, msg);
 
                     }
-                });
-
+                });*/
+        msg="Subscription Failed";
         return msg;
     }
 

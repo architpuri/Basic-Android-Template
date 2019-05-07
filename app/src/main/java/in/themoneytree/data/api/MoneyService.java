@@ -24,9 +24,7 @@ public interface MoneyService {
     Call<GeneralResponse> sendUserDetails(@Field("userName") String userName,
                                           @Field("password") String password,
                                           @Field("fullName") String fullName,
-                                          @Field("userType") int userType,
-                                          @Field("mobileNumber") String mobileNumber,
-                                          @Field("collegeId") String collegeId);
+                                          @Field("mobileNumber") String mobileNumber);
 
     @GET("/api/users/{userId}")
     Call<UserResponse> getUserInfo(@Path("userId") Integer userId);

@@ -1,4 +1,4 @@
-package in.themoneytree.ui;
+package in.themoneytree.ui.splash;
 
 
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import in.themoneytree.R;
+import in.themoneytree.ui.home.HomeActivity;
+import in.themoneytree.ui.login.LoginActivity;
 
 
 public class SplashActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package in.themoneytree.ui;
+package in.themoneytree.ui.home;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,15 +12,16 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.themoneytree.R;
+import in.themoneytree.ui.base.BaseActivity;
+import in.themoneytree.ui.common.UiConstants;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
     @BindView(R.id.btn_shareList)
     Button btnShareList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         btnShareList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,5 +35,20 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public String getCurrentTag() {
+        return UiConstants.TAG_HOME;
+    }
+
+    @Override
+    public boolean getBottomNavigation() {
+        return false;
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.activity_home;
     }
 }

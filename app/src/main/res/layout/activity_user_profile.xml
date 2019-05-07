@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <android.support.constraint.ConstraintLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padd_5">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraint_userImages_userProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin25"
+            android:elevation="@dimen/padd_5"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_userBackground_userProfile"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/img_placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/progressBar_userBackground_userProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/elevation_5"
+                app:layout_constraintTop_toTopOf="@id/img_userBackground_userProfile"
+                app:layout_constraintBottom_toBottomOf="@id/img_userBackground_userProfile"
+                app:layout_constraintStart_toStartOf="@id/img_userBackground_userProfile"
+                app:layout_constraintEnd_toEndOf="@id/img_userBackground_userProfile"/>
+
+            <ImageView
+                android:id="@+id/img_user_userProfile"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:elevation="@dimen/elevation_2"
+                android:src="@drawable/img_profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/guide_userProfile" />
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/progressBar_user_userProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/elevation_5"
+                app:layout_constraintTop_toTopOf="@id/img_user_userProfile"
+                app:layout_constraintBottom_toBottomOf="@id/img_user_userProfile"
+                app:layout_constraintStart_toStartOf="@id/img_user_userProfile"
+                app:layout_constraintEnd_toEndOf="@id/img_user_userProfile"/>
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guide_userProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.4" />
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:textColor="@color/colorBlack"
+            android:id="@+id/txt_password_userProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            android:padding="@dimen/padd_10"
+            android:text="Change Password"
+            android:textSize="@dimen/textSize"
+            app:layout_constraintTop_toBottomOf="@id/constraint_userImages_userProfile"
+            android:background="@drawable/btn_outline_rectangle"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textLayout_oldPassword_userProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_password_userProfile"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_oldPassword_userProfile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Old Password"
+                android:inputType="textPassword"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textLayout_newPassword_userProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textLayout_oldPassword_userProfile"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_newPassword_userProfile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableTint="@color/colorBlack"
+                android:hint="New Password"
+                android:inputType="textPassword"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_changePassword_userProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            android:text="Change Password"
+            android:textAllCaps="false"
+            android:textSize="@dimen/textSize_20"
+            app:layout_constraintTop_toBottomOf="@id/textLayout_newPassword_userProfile" />
+
+        <ProgressBar
+            android:visibility="gone"
+            android:elevation="@dimen/elevation_5"
+            android:id="@+id/progressBar_btnChangePassword_userProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/btn_changePassword_userProfile"
+            app:layout_constraintBottom_toBottomOf="@id/btn_changePassword_userProfile"
+            app:layout_constraintStart_toStartOf="@id/btn_changePassword_userProfile"
+            app:layout_constraintEnd_toEndOf="@id/btn_changePassword_userProfile"/>
+        <LinearLayout
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/btn_changePassword_userProfile"
+            android:id="@+id/linearLayout_permissions_userProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padd_10"
+            app:layout_constraintStart_toStartOf="parent" >
+            <TextView
+                android:textSize="@dimen/textSize_20"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Permission List"/>
+        </LinearLayout>
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/btn_grantedPermissions_userProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            android:text="@string/granted_permission"
+            android:textAllCaps="false"
+            android:textSize="@dimen/textSize_20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_permissions_userProfile" />
+
+        <Button
+            android:id="@+id/btn_addDetails_userProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            android:text="Add More Details"
+            android:textAllCaps="false"
+            android:textSize="@dimen/textSize_20"
+            app:layout_constraintTop_toBottomOf="@+id/btn_grantedPermissions_userProfile" />
+
+        <Button
+            android:id="@+id/btn_addPermissions_userProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            android:text="Grant Permissions (Admin)"
+            android:textAllCaps="false"
+            android:textSize="@dimen/textSize_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_addDetails_userProfile" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_drawerOpen_userProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padd_5"
+        android:layout_margin="@dimen/margin25"
+        android:clickable="true"
+        android:src="@drawable/ic_apps_white"
+        android:elevation="@dimen/elevation_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</android.support.constraint.ConstraintLayout>

@@ -60,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/img_login_person"
                 android:drawableTint="@color/colorAccent"
+                android:textColor="@color/colorBlack"
                 android:hint="@string/user_name"
                 android:inputType="textEmailAddress"
                 android:singleLine="true"/>
@@ -82,6 +83,7 @@
                 android:layout_marginTop="16dp"
                 android:drawableTint="@color/colorAccent"
                 android:hint="@string/password"
+                android:textColor="@color/colorBlack"
                 android:inputType="textPassword"
                 android:singleLine="true"/>
         </android.support.design.widget.TextInputLayout>
