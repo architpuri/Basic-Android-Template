@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="500dp"
+    android:padding="@dimen/padd_2"
+    android:background="@color/colorLightGrey"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Button
+        android:id="@+id/btn_camera_fileType"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_4"
+        android:background="@drawable/ic_camera_blue"
+        android:text="Camera"
+        android:textAllCaps="false"
+        android:gravity="bottom|center"
+        android:textSize="@dimen/textSize_25"
+        android:textColor="@color/colorBlueGrey"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/guide_dialog_fileType_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/btn_pdf_fileType"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_4"
+        android:background="@drawable/ic_pdf_box"
+        android:backgroundTint="@color/colorRed"
+        android:text="Pdf"
+        android:textAllCaps="false"
+        android:gravity="bottom|center"
+        android:textSize="@dimen/textSize_25"
+        android:textColor="@color/colorBlueGrey"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/guide_dialog_fileType_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guide_dialog_fileType_top" />
+
+
+    <Button
+        android:id="@+id/btn_video_fileType"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_4"
+        android:background="@drawable/ic_video_box"
+        android:backgroundTint="@color/colorAccent"
+        android:gravity="bottom|center"
+        android:textSize="@dimen/textSize_25"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBlueGrey"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:text="Video"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guide_dialog_fileType_bottom" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_dialog_fileType_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33"/>
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_dialog_fileType_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.66"/>
+</android.support.constraint.ConstraintLayout>

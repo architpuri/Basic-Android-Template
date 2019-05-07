@@ -1,0 +1,227 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <TextView
+        android:id="@+id/login_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/colorWhite"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/guide_text_bottom"
+        app:layout_constraintEnd_toStartOf="@id/guide_layout_right"
+        app:layout_constraintStart_toEndOf="@id/guide_layout_left"
+        app:layout_constraintTop_toBottomOf="@id/guide_text_top" />
+    <ImageView
+        android:id="@+id/img_login"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:src="@drawable/ic_m"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@id/guide_layout_right"
+        app:layout_constraintStart_toEndOf="@id/guide_layout_left"
+        app:layout_constraintTop_toBottomOf="@id/login_title" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="347dp"
+        android:layout_below="@+id/login_title"
+        android:background="@color/colorWhite"
+        android:elevation="5dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/guide_layout_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guide_layout_right"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guide_layout_left"
+        app:layout_constraintTop_toBottomOf="@+id/guide_layout_top"
+        app:layout_constraintVertical_bias="1.0">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textLayout_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorBlueGrey"
+            app:layout_constraintEnd_toStartOf="@id/guide_inlayout_text_right"
+            app:layout_constraintStart_toEndOf="@id/guide_inlayout_text_left"
+            app:layout_constraintTop_toBottomOf="@+id/guide_inlayout_text_top">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_user_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/img_login_person"
+                android:drawableTint="@color/colorAccent"
+                android:hint="@string/user_name"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textLayout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorBlueGrey"
+            app:layout_constraintEnd_toStartOf="@id/guide_inlayout_text_right"
+            app:layout_constraintStart_toEndOf="@id/guide_inlayout_text_left"
+            app:layout_constraintTop_toBottomOf="@+id/guide_inlayout_text_mid"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_user_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableTint="@color/colorAccent"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:singleLine="true"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/text_forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text="@string/forgotPassword"
+            android:textSize="18sp"
+            android:textColor="@color/colorBlueGrey"
+            app:layout_constraintBottom_toTopOf="@+id/btn_signin"
+            app:layout_constraintEnd_toStartOf="@id/guide_inlayout_text_right"
+            app:layout_constraintTop_toBottomOf="@+id/guide_inlayout_forgot_top" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_inlayout_forgot_top"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.56" />
+
+        <Button
+            android:id="@+id/btn_signin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="0dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/login_button"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/guide_inlayout_text_right"
+            app:layout_constraintStart_toEndOf="@id/guide_inlayout_text_left"
+            app:layout_constraintTop_toBottomOf="@+id/guide_inlayout_btn_top"
+            tools:targetApi="21" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:elevation="5dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/guide_inlayout_text_right"
+            app:layout_constraintStart_toEndOf="@id/guide_inlayout_text_left"
+            app:layout_constraintTop_toBottomOf="@+id/guide_inlayout_btn_top" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_inlayout_btn_top"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.79" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_inlayout_text_left"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.0" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_inlayout_text_right"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.99" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_inlayout_text_top"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.09" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_inlayout_text_mid"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.375" />
+
+    </android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/btn_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:textAllCaps="false"
+        android:text="New User? Register"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintTop_toBottomOf="@id/guide_layout_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guide_layout_left"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_layout_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_layout_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_layout_top"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.29" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_layout_bottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_text_top"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.11" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_text_bottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.19" />
+
+
+
+</android.support.constraint.ConstraintLayout>

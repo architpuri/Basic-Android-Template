@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">The Money Tree</string>
+    <!--Login Screen Starts-->
+    <string name="login_button">Sign In</string>
+    <string name="user_name">User Name (Email)</string>
+    <string name="password">Password</string>
+    <string name="forgotPassword">Forgot Password</string>
+    <string name="err_msg_password">Invalid Password</string>
+    <string name="no_input_msg_password">Please Enter Password</string>
+    <string name="err_msg_id">Invalid Login ID</string>
+    <string name="no_input_msg_id">Please Enter Login ID</string>
+    <string name="err_msg_server">Server Error</string>
+    <string name="err_msg_wrong_details_server">Username/Password is incorrect</string>
+    <!--Login Screen Ends-->
+</resources>
