@@ -19,4 +19,7 @@ public class UiConstants {
     public static final String TAG_EXPENDITURE ="EXPENDITURE" ;
     public static final int DEFAULT_PLACEHOLDER = 0;
     public static final String TAG_USER_PROFILE ="USER_PROFILE" ;
+    public static final String TAG_PORTFOLIO ="PORTFOLIO";
+    public static final String TAG_STOCKS ="STOCKS" ;
+    public static final String TAG_TAX="TAX" ;
 }

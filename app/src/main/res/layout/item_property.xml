@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/margin_10"
+    android:background="@drawable/btn_outline_rectangle"
+    android:padding="@dimen/padd_10">
+    <TextView
+        android:id="@+id/txt_location_itemProperty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sector - 5, Chandigarh"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        android:ems="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemProperty_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/txt_investmentAmount_itemProperty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5,00,000"
+        android:drawableLeft="@drawable/ic_rupee_indian"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemProperty_right"
+        app:layout_constraintStart_toEndOf="@id/guide_itemProperty_left"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_area_itemProperty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1000 square yds"
+        android:ems="3"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guide_itemProperty_right"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_itemProperty_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.42" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_itemProperty_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+
+</android.support.constraint.ConstraintLayout>

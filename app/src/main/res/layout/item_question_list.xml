@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/btn_outline_rectangle"
+    android:padding="@dimen/padd_10"
+    android:layout_margin="@dimen/margin_10">
+    <TextView
+        android:id="@+id/txt_question_itemQuestionList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxEms="25"
+        android:textSize="@dimen/textSize_25"
+        android:padding="@dimen/padd_2"
+        android:singleLine="false"
+        android:textColor="@color/colorBlack"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="What is Your Current Age?"
+        app:layout_constraintStart_toStartOf="@id/guide_itemQuestionList_left"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:background="@drawable/btn_outline_rectangle"
+        android:id="@+id/edt_userAnswer_itemQuestionList"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:maxEms="25"
+        android:textSize="@dimen/textSize_20"
+        android:layout_marginTop="@dimen/margin_10"
+        android:singleLine="false"
+        android:inputType="number"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemQuestionList_right"
+        app:layout_constraintStart_toEndOf="@id/guide_itemQuestionList_left"
+        app:layout_constraintTop_toBottomOf="@id/txt_question_itemQuestionList" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_itemQuestionList_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_itemQuestionList_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+</android.support.constraint.ConstraintLayout>

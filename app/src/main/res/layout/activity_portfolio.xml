@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/constraint_main_portfolio">
+
+        <TextView
+            android:id="@+id/txt_totalCorpus_portfolio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:padding="@dimen/padd_5"
+            android:text="Total Corpus"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_totalCorpusAmount_portfolio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padd_10"
+            android:text="Rs. 1,00,000"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintStart_toStartOf="@id/guide_portfolio_left"
+            app:layout_constraintTop_toBottomOf="@id/txt_totalCorpus_portfolio" />
+
+        <TextView
+            android:id="@+id/txt_portfolioAllocation_portfolio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:padding="@dimen/padd_5"
+            android:text="Portfolio Allocation"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_totalCorpusAmount_portfolio" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/chart_allocation_portfolio"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="@dimen/margin_10"
+            android:background="@drawable/btn_outline_rectangle"
+            app:layout_constraintEnd_toEndOf="@id/guide_portfolio_right"
+            app:layout_constraintStart_toStartOf="@id/guide_portfolio_left"
+            app:layout_constraintTop_toBottomOf="@id/txt_portfolioAllocation_portfolio" />
+
+        <Button
+            android:id="@+id/btn_completePortfolio_portfolio"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/register_btn_height"
+            android:layout_margin="@dimen/margin_10"
+            android:background="@drawable/btn_outline_rectangle"
+            android:drawableRight="@drawable/ic_arrow_drop_down_black"
+            android:text="Complete Portfolio Details"
+            android:textAllCaps="false"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintTop_toBottomOf="@id/chart_allocation_portfolio" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraint_completePortfolio_portfolio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/btn_completePortfolio_portfolio">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_investmentInstruments_portfolio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin25"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_investment_intruments"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btn_transactionHistory_portfolio"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/register_btn_height"
+            android:layout_margin="@dimen/margin_10"
+            android:background="@drawable/btn_outline_rectangle"
+            android:drawableRight="@drawable/ic_arrow_drop_down_black"
+            android:text="Transactions"
+            android:textAllCaps="false"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintTop_toBottomOf="@id/btn_completePortfolio_portfolio" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraint_transactions_portfolio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/btn_transactionHistory_portfolio">
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_drawerOpen_portfolio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin25"
+            android:clickable="true"
+            android:elevation="@dimen/elevation_5"
+            android:padding="@dimen/padd_5"
+            android:src="@drawable/ic_apps_white"
+            app:layout_constraintBottom_toBottomOf="@id/constraint_main_portfolio"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_drawerOpen_moreOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin25"
+            android:clickable="true"
+            android:elevation="@dimen/elevation_5"
+            android:padding="@dimen/padd_5"
+            android:src="@drawable/ic_add_white"
+            app:layout_constraintBottom_toBottomOf="@id/constraint_main_portfolio"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_portfolio_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.035"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_portfolio_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.965" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

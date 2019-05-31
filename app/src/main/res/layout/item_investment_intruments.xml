@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padd_5">
+
+    <TextView
+        android:id="@+id/txt_instrumentName_itemInstruments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        android:text="Mutual Fund"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_instrumentTotalAmount_itemInstruments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        android:padding="@dimen/padd_2"
+        android:text="Total Amount -"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_getDetails_itemInstruments" />
+
+    <TextView
+        android:id="@+id/txt_instrumentAmount_itemInstruments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        android:drawableLeft="@drawable/ic_rupee_indian"
+        android:drawablePadding="@dimen/padd_2"
+        android:text="50000"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintStart_toEndOf="@id/txt_instrumentTotalAmount_itemInstruments"
+        app:layout_constraintTop_toBottomOf="@id/btn_getDetails_itemInstruments" />
+
+    <Button
+        android:id="@+id/btn_getDetails_itemInstruments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_5"
+        android:background="@drawable/btn_outline_rectangle"
+        android:text="Get Details"
+        android:textAllCaps="false"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txt_instrumentName_itemInstruments" />
+</android.support.constraint.ConstraintLayout>

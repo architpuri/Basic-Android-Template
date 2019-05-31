@@ -30,6 +30,7 @@ import in.themoneytree.data.model.UserResponse;
 import in.themoneytree.ui.common.UiConstants;
 import in.themoneytree.ui.home.HomeActivity;
 import in.themoneytree.ui.registration.RegistrationActivity;
+import in.themoneytree.ui.riskprofile.RiskAnalyzerActivity;
 import in.themoneytree.utils.CommonUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -182,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
                             }catch (Exception e){
                                 CommonUtils.exceptionHandling(TAG,e);
                             }
-                            startActivity(new Intent(context,HomeActivity.class));//remove after permission
+                            startActivity(new Intent(context, RiskAnalyzerActivity.class));//remove after permission
                             //UiConstants.setUpPermissionList(context, HomeActivity.class);
                         } else {
                             progressBar.setVisibility(View.GONE);

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import in.themoneytree.R;
+import in.themoneytree.data.local.PrefManager;
 import in.themoneytree.ui.home.HomeActivity;
 import in.themoneytree.ui.login.LoginActivity;
 
@@ -47,11 +48,11 @@ public class SplashActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... voids) {
             //Check if shared preferences contain valid login id & password
             boolean isValid = false;//PrefManager.getInstance().isLoggedin();
-            /*if (PrefManager.getInstance(getApplicationContext()) != null) {
+            if (PrefManager.getInstance(getApplicationContext()) != null) {
                 if (PrefManager.getInstance(getApplicationContext()).getAccessToken() != null) {
                     isValid = true;
                 }
-            }*/
+            }
             return isValid;
         }
 

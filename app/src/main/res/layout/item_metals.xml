@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/margin_10"
+    android:background="@drawable/btn_outline_rectangle"
+    android:padding="@dimen/padd_10">
+
+
+    <ImageView
+        android:id="@+id/img_metalSymbol_itemMetals"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/img_gold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemMetals_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_purity_itemMetals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="99.99 %"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemMetals_right"
+        app:layout_constraintStart_toEndOf="@id/guide_itemMetals_left"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_weightGram_itemMetals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8 gm"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guide_itemMetals_right"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_itemMetals_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_itemMetals_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+</android.support.constraint.ConstraintLayout>

@@ -28,9 +28,13 @@ import in.themoneytree.data.model.User;
 import in.themoneytree.data.model.UserResponse;
 import in.themoneytree.ui.aboutus.AboutUsActivity;
 import in.themoneytree.ui.common.UiConstants;
+import in.themoneytree.ui.expenditure.ExpenditureActivity;
 import in.themoneytree.ui.home.HomeActivity;
+import in.themoneytree.ui.portfolio.PortfolioActivity;
 import in.themoneytree.ui.privacypolicy.PrivacyPolicyActivity;
 import in.themoneytree.ui.splash.SplashActivity;
+import in.themoneytree.ui.stocks.StocksActivity;
+import in.themoneytree.ui.tax.TaxActivity;
 import in.themoneytree.ui.userprofile.UserProfileActivity;
 import in.themoneytree.utils.CommonUtils;
 import in.themoneytree.utils.LoadImageFile;
@@ -53,7 +57,8 @@ public abstract class NavigationDrawer extends AppCompatActivity {
     private Bitmap bitmap;
     private Boolean isProfileClicked;
     private Intent intent;
-    private static final String TAG="NAVIGATION DRAWER";
+    private static final String TAG = "NAVIGATION DRAWER";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,7 +98,7 @@ public abstract class NavigationDrawer extends AppCompatActivity {
                 imgProfile.setBackground(ob);
                 File file =CommonUtils.fileFromBitmapBuilder(bitmap,getApplicationContext());
                 //send this file to sever and return string url to save in shared preferences*/
-                startActivity(new Intent(getApplicationContext(),UserProfileActivity.class));
+                startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
             }
         });
         setUpNavigationView();
@@ -109,20 +114,20 @@ public abstract class NavigationDrawer extends AppCompatActivity {
                 imgProfile,
                 PrefManager.getInstance(getApplicationContext()).getUserImageUrl(),
                 0);
-        Log.d(TAG,"msg"+PrefManager.getInstance(getApplicationContext()).getUserImageUrl());
+        Log.d(TAG, "msg" + PrefManager.getInstance(getApplicationContext()).getUserImageUrl());
     }
 
     private void setUpImgNavHeaderBg() {
         LoadImageFile.loadImageFromUrl(getApplicationContext(),
-                imgNavHeaderBg ,
+                imgNavHeaderBg,
                 PrefManager.getInstance(getApplicationContext()).getBackgroundImg(),
                 R.drawable.img_placeholder);
-        Log.d(TAG,"MSG"+PrefManager.getInstance(getApplicationContext()).getBackgroundImg());
+        Log.d(TAG, "MSG" + PrefManager.getInstance(getApplicationContext()).getBackgroundImg());
     }
 
     @Override
     public void onBackPressed() {
-        Log.d(TAG,"idhr bhi aaya3");
+        Log.d(TAG, "idhr bhi aaya3");
         //changeCurrentFocus();
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawers();
@@ -166,26 +171,42 @@ public abstract class NavigationDrawer extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.nav_home:
+                    case R.id.nav_home: {
                         if (getCurrentTag() == UiConstants.TAG_HOME) {
                         } else {
-                            /*Intent intent=new Intent(getApplicationContext(), HomeActivity.class);
-                            intent.putExtra("previousTAG",)*/
                             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         }
                         break;
-                    case R.id.nav_expenditure:
-                        if (getCurrentTag() == UiConstants.TAG_HOME) {
+                    }
+                    case R.id.nav_portfolio: {
+                        if (getCurrentTag() == UiConstants.TAG_EXPENDITURE) {
                         } else {
-                            /*Intent intent=new Intent(getApplicationContext(), HomeActivity.class);
-                            intent.putExtra("previousTAG",)*/
-                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            startActivity(new Intent(getApplicationContext(), PortfolioActivity.class));
                         }
                         break;
+                    }
+                    case R.id.nav_expenditure: {
+                        if (getCurrentTag() == UiConstants.TAG_EXPENDITURE) {
+                        } else {
+                            startActivity(new Intent(getApplicationContext(), ExpenditureActivity.class));
+                        }
+                        break;
+                    }
+                    case R.id.nav_tax: {
+                        if (getCurrentTag() == UiConstants.TAG_TAX) {
+                        } else {
+                            startActivity(new Intent(getApplicationContext(), TaxActivity.class));
+                        }
+                        break;
+                    }
+                    case R.id.nav_stocks: {
+                        if (getCurrentTag() == UiConstants.TAG_STOCKS) {
+                        } else {
+                            startActivity(new Intent(getApplicationContext(), StocksActivity.class));
+                        }
+                        break;
+                    }
                     case R.id.nav_sign_out: {
-                        /*PrefManager.getInstance(getApplicationContext())
-                                .getSharedPreferences().edit()
-                                .clear().commit(); */
                         PrefManager.getInstance(getApplicationContext())
                                 .logoutUser();
                         startActivity(new Intent(getApplicationContext(), SplashActivity.class));
@@ -208,9 +229,9 @@ public abstract class NavigationDrawer extends AppCompatActivity {
                         }
                         drawer.closeDrawers();
                         return true;
-                    default:{
+                    default: {
                     }
-                        drawer.closeDrawers();
+                    drawer.closeDrawers();
                 }
 
                 //Checking if the item is in checked state or not, if not make it in checked state
@@ -246,37 +267,52 @@ public abstract class NavigationDrawer extends AppCompatActivity {
 
     public abstract String getCurrentTag();
 
-    public void changeCurrentFocus(){
+    public void changeCurrentFocus() {
         for (int i = 0; i < navigationView.getMenu().size(); i++) {
             navigationView.getMenu().getItem(i).setChecked(false);
         }
-        int currentIndex=0;
+        int currentIndex = 0;
         switch (getCurrentTag()) {
             case UiConstants.TAG_HOME: {
-                currentIndex=0;
+                currentIndex = 0;
+                break;
+            }
+            case UiConstants.TAG_PORTFOLIO: {
+                currentIndex = 1;
                 break;
             }
             case UiConstants.TAG_EXPENDITURE: {
-                currentIndex=1;
+                currentIndex = 2;
+                break;
+            }
+            case UiConstants.TAG_TAX: {
+                currentIndex = 3;
+                break;
+            }
+            case UiConstants.TAG_STOCKS: {
+                currentIndex = 4;
                 break;
             }
             case UiConstants.TAG_SIGN_OUT: {
-                currentIndex=2;
-                break;
-            }case UiConstants.TAG_ABOUT_US: {
-                currentIndex=3;
-                break;
-            }case UiConstants.TAG_PRIVACY_POLICY: {
-                currentIndex=3;
+                currentIndex = 5;
                 break;
             }
-            default:{
-                Log.d(TAG,"TAG Default");
-                currentIndex=-1;
+            case UiConstants.TAG_ABOUT_US: {
+                currentIndex = 6;
+                break;
             }
-        };
-        if(currentIndex>=0)
-        navigationView.getMenu().getItem(currentIndex).setChecked(true);
+            case UiConstants.TAG_PRIVACY_POLICY: {
+                currentIndex = 6;
+                break;
+            }
+            default: {
+                Log.d(TAG, "TAG Default");
+                currentIndex = -1;
+            }
+        }
+        ;
+        if (currentIndex >= 0)
+            navigationView.getMenu().getItem(currentIndex).setChecked(true);
     }
 
 
@@ -299,7 +335,7 @@ public abstract class NavigationDrawer extends AppCompatActivity {
                             PrefManager.getInstance(context).setBackgroundImg(user.getUserBackgroundImageUrl());
                             PrefManager.getInstance(context).setUserType(user.getUserType() + "");
                             PrefManager.getInstance(context).setAccessToken(user.getUserAccessToken());
-                            } else {
+                        } else {
                             CommonUtils.showToast(getApplicationContext(), "Error in Fetching Image");
                         }
                     } catch (Exception e) {

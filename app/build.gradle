@@ -24,6 +24,9 @@ android {
         maven {
             url "http://dl.bintray.com/lukaville/maven"
         }
+        maven {
+            url 'https://jitpack.io'
+        }
     }
 }
 
@@ -69,6 +72,8 @@ dependencies {
     implementation 'com.nbsp:library:1.8'
     implementation 'com.afollestad.material-dialogs:core:0.9.4.5'
 
+    //Graphs
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     configurations.all {
         exclude group: 'com.android.support', module: 'support-v13'
     }

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/padd_10"
+    android:background="@drawable/btn_outline_rectangle"
+    android:padding="@dimen/padd_10">
+
+    <ImageView
+        android:id="@+id/img_stock_itemStockRecommendation"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
+        android:src="@drawable/ic_m"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemStockRecommendation_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_stockSymbol_itemStockRecommendation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxEms="7"
+        android:padding="@dimen/padd_2"
+        android:singleLine="false"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemStockRecommendation_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_stock_itemStockRecommendation"
+        tools:text="HUL" />
+
+    <TextView
+        android:id="@+id/txt_stockName_itemStockRecommendation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxEms="8"
+        android:padding="@dimen/padd_2"
+        android:singleLine="false"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemStockRecommendation_right"
+        app:layout_constraintStart_toEndOf="@id/guide_itemStockRecommendation_left"
+        app:layout_constraintTop_toTopOf="@id/txt_actionDuration_itemStockRecommendation"
+        tools:text="Hindustan Unilever" />
+
+    <TextView
+        android:id="@+id/txt_currentPrice_itemStockRecommendation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_5"
+        android:gravity="center"
+        android:maxEms="8"
+        android:padding="@dimen/padd_2"
+        android:singleLine="false"
+        android:text="CMP : 558.23"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemStockRecommendation_right"
+        app:layout_constraintStart_toEndOf="@id/guide_itemStockRecommendation_left"
+        app:layout_constraintTop_toBottomOf="@id/txt_stockName_itemStockRecommendation" />
+
+    <TextView
+        android:id="@+id/txt_actionType_itemStockRecommendation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_5"
+        android:background="@color/colorGreen"
+        android:gravity="center"
+        android:maxEms="8"
+        android:padding="@dimen/padd_2"
+        android:singleLine="false"
+        android:text="Buy"
+        android:textAllCaps="true"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_20"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemStockRecommendation_right"
+        app:layout_constraintStart_toEndOf="@id/guide_itemStockRecommendation_left"
+        app:layout_constraintTop_toBottomOf="@id/txt_currentPrice_itemStockRecommendation" />
+
+    <TextView
+        android:id="@+id/txt_actionDuration_itemStockRecommendation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxEms="8"
+        android:padding="@dimen/padd_2"
+        android:singleLine="false"
+        android:text="Long Term"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guide_itemStockRecommendation_right"
+        app:layout_constraintTop_toTopOf="@id/img_stock_itemStockRecommendation" />
+
+    <Button
+        android:id="@+id/btn_actionDone_itemStockRecommendation"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_key_black"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guide_itemStockRecommendation_right"
+        app:layout_constraintTop_toBottomOf="@id/txt_actionDuration_itemStockRecommendation" />
+
+    <Button
+        android:id="@+id/btn_notify_itemStockRecommendation"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_add_alert_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_itemStockRecommendation_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_itemStockRecommendation_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+</android.support.constraint.ConstraintLayout>

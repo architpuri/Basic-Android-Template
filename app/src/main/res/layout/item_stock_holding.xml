@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_10"
+    android:background="@drawable/btn_outline_rectangle"
+    android:padding="@dimen/padd_10">
+
+    <ImageView
+        android:id="@+id/img_profitLoss_itemStockHolding"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_arrow_up_green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemStockHolding_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_stockSymbol_itemStockHolding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="State Bank"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemStockHolding_center"
+        app:layout_constraintStart_toEndOf="@id/guide_itemStockHolding_left"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_quantity_itemStockHolding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1500"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guide_itemStockHolding_right"
+        app:layout_constraintStart_toEndOf="@id/guide_itemStockHolding_center"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_datePurchase_itemStockHolding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="24/05/19"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guide_itemStockHolding_right"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_itemStockHolding_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_itemStockHolding_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide_itemStockHolding_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+</android.support.constraint.ConstraintLayout>
