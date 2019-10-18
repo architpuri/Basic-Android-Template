@@ -1,4 +1,4 @@
-package in.themoneytree.data.model;
+package in.themoneytree.data.model.user;
 
 public class User {
     private Integer userId;

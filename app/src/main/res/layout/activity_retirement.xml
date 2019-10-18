@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_title_retirement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padd_10"
+                android:text="My Retirement Corpus"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <include
+                android:id="@+id/include_layout"
+                layout="@layout/activity_retirement_questions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10"
+                app:layout_constraintTop_toBottomOf="@id/txt_title_retirement" />
+
+            <Button
+                android:id="@+id/btn_calculateCorpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_10"
+                android:background="@drawable/btn_outline_rectangle"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Calculate Retirement Corpus"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintTop_toBottomOf="@id/include_layout" />
+
+            <TextView
+                android:id="@+id/txt_corpusAmount_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10"
+                android:background="@drawable/btn_outline_rectangle"
+                android:backgroundTint="@color/colorWhite"
+                android:gravity="center"
+                android:text="Corpus Amount is -"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_25"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/btn_calculateCorpus_retirement" />
+
+            <ProgressBar
+                android:id="@+id/progress_corpusAmount"
+                style="?android:progressBarStyleHorizontal"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/margin25"
+                android:padding="@dimen/padd_10"
+                android:progress="30"
+                android:progressDrawable="@drawable/progress_circle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_corpusAmount_retirement" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorWhite"
+                android:elevation="@dimen/elevation_5"
+                android:padding="@dimen/padd_2"
+                android:text="30 %"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintBottom_toBottomOf="@id/progress_corpusAmount"
+                app:layout_constraintEnd_toEndOf="@id/progress_corpusAmount"
+                app:layout_constraintStart_toStartOf="@id/progress_corpusAmount"
+                app:layout_constraintTop_toTopOf="@id/progress_corpusAmount" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_drawerOpen_retirement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin25"
+        android:clickable="true"
+        android:elevation="@dimen/elevation_5"
+        android:padding="@dimen/padd_5"
+        android:src="@drawable/ic_apps_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>

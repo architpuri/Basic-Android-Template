@@ -1,4 +1,6 @@
-package in.themoneytree.data.model;
+package in.themoneytree.data.model.user;
+
+import in.themoneytree.data.model.GeneralResponse;
 
 public class UserResponse {
     private GeneralResponse generalResponse;

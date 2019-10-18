@@ -3,6 +3,7 @@ package in.themoneytree.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ public class InvestmentInstrumentsAdapter extends RecyclerView.Adapter<Investmen
     private List<String> instruments;
     private Context context;
     private final ClickListener listener;
+    private final String TAG="Investment Instru Adapter";
 
     public InvestmentInstrumentsAdapter(List<String> instruments, Context context, ClickListener listener) {
         this.instruments = instruments;
@@ -34,8 +36,14 @@ public class InvestmentInstrumentsAdapter extends RecyclerView.Adapter<Investmen
 
     @Override
     public void onBindViewHolder(@NonNull InvestmentInstrumentsAdapter.ViewHolder holder, int position) {
-        String name=instruments.get(position);
-        holder.instrumentName.setText("S-"+name);
+        String name = instruments.get(position);
+        holder.instrumentName.setText(name);
+        holder.instrumentDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.itemEdit(v,position,name);
+            }
+        });
     }
 
     @Override
@@ -44,13 +52,20 @@ public class InvestmentInstrumentsAdapter extends RecyclerView.Adapter<Investmen
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView instrumentName,instrumentAmount;
+        public TextView instrumentName, instrumentAmount;
         public Button instrumentDetails;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            instrumentName=itemView.findViewById(R.id.txt_instrumentName_itemInstruments);
-            instrumentAmount=itemView.findViewById(R.id.txt_instrumentAmount_itemInstruments);
-            instrumentDetails=itemView.findViewById(R.id.btn_getDetails_itemInstruments);
+            instrumentName = itemView.findViewById(R.id.txt_instrumentName_itemInstruments);
+            instrumentAmount = itemView.findViewById(R.id.txt_instrumentAmount_itemInstruments);
+            instrumentDetails = itemView.findViewById(R.id.btn_getDetails_itemInstruments);
+            /*instrumentDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d(TAG,"CLICKED");
+                }
+            });*/
         }
     }
 }

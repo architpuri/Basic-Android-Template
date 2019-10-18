@@ -11,50 +11,34 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorWhite">
+            android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/txt_title_homeActivity"
-                android:layout_width="wrap_content"
+                android:id="@+id/txt_title_instrument"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin25"
+                android:layout_marginTop="@dimen/margin_4"
                 android:background="@drawable/btn_outline_rectangle"
-                android:padding="@dimen/padd_5"
-                android:text="Stocks Recommended For You"
+                android:padding="@dimen/padd_10"
+                android:text="Metal Reserve"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_25"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_stockList_homeActivity"
+                android:id="@+id/recycler_components_instrument"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin25"
                 android:orientation="vertical"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/txt_title_homeActivity"
-                tools:listitem="@layout/item_stock_recommendation" />
-
-            <Button
-                android:id="@+id/btn_shareList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Click to Get Share List in Excel Format"
-                android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/textSize_20"
-                app:layout_constraintBottom_toBottomOf="@id/recycler_stockList_homeActivity"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
-
+                app:layout_constraintTop_toBottomOf="@id/txt_title_instrument"
+                tools:listitem="@layout/item_metals" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_drawerOpen_homeActivity"
+        android:id="@+id/fab_drawerOpen_instrument"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin25"
@@ -64,4 +48,17 @@
         android:src="@drawable/ic_apps_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_instrument"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin25"
+        android:clickable="true"
+        android:elevation="@dimen/elevation_5"
+        android:padding="@dimen/padd_5"
+        android:src="@drawable/ic_add_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

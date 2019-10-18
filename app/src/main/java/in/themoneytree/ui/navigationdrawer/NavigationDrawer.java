@@ -24,14 +24,15 @@ import in.themoneytree.data.api.ApiClient;
 import in.themoneytree.data.api.ApiConstants;
 import in.themoneytree.data.api.MoneyService;
 import in.themoneytree.data.local.PrefManager;
-import in.themoneytree.data.model.User;
-import in.themoneytree.data.model.UserResponse;
+import in.themoneytree.data.model.user.User;
+import in.themoneytree.data.model.user.UserResponse;
 import in.themoneytree.ui.aboutus.AboutUsActivity;
 import in.themoneytree.ui.common.UiConstants;
 import in.themoneytree.ui.expenditure.ExpenditureActivity;
 import in.themoneytree.ui.home.HomeActivity;
 import in.themoneytree.ui.portfolio.PortfolioActivity;
 import in.themoneytree.ui.privacypolicy.PrivacyPolicyActivity;
+import in.themoneytree.ui.retirement.RetirementActivity;
 import in.themoneytree.ui.splash.SplashActivity;
 import in.themoneytree.ui.stocks.StocksActivity;
 import in.themoneytree.ui.tax.TaxActivity;
@@ -203,6 +204,13 @@ public abstract class NavigationDrawer extends AppCompatActivity {
                         if (getCurrentTag() == UiConstants.TAG_STOCKS) {
                         } else {
                             startActivity(new Intent(getApplicationContext(), StocksActivity.class));
+                        }
+                        break;
+                    }
+                    case R.id.nav_retirement_corpus: {
+                        if (getCurrentTag() == UiConstants.TAG_RETIREMENT_CORPUS) {
+                        } else {
+                            startActivity(new Intent(getApplicationContext(), RetirementActivity.class));
                         }
                         break;
                     }

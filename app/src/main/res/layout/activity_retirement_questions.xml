@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraint_corpusCalculate_retirement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin25"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/btn_calculateCorpus_retirement">
+
+        <TextView
+            android:id="@+id/txt_q1_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="AGE"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q1_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/txt_q1_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q1_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="Current Age (eg 35 yrs)"
+                android:inputType="number"
+                android:text="35"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q12_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/text_q1_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q12_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="Desired Retirement Age (eg 60 yrs)"
+                android:inputType="number"
+                android:text="60"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txt_q2_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin25"
+            android:gravity="center"
+            android:text="Expenses"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintTop_toBottomOf="@id/text_q12_corpus_retirement" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q2_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/txt_q2_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q2_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="Monthly Expenses eg 50000"
+                android:inputType="number"
+                android:text="50000"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q22_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/text_q2_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q22_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="One Time Expenses Yearly (eg 150000)"
+                android:inputType="number"
+                android:text="50000"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q3_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/text_q22_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q3_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="Inflation Factor eg 5% is default"
+                android:inputType="number"
+                android:text="5"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txt_q4a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin25"
+            android:gravity="center"
+            android:text="How Will Your Spending Change After Retirement?"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintTop_toBottomOf="@id/text_q3_corpus_retirement" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup_q4a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txt_q4a_corpus_retirement">
+
+            <RadioButton
+                android:id="@+id/radioBtn1_q4a_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="Expecting Higher Expenses on travel,health and entertainment"
+                android:textSize="@dimen/textSize_20" />
+
+            <RadioButton
+                android:id="@+id/radioBtn2_q4a_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="Expecting Higher Expenses on travel,health and lower on entertainment"
+                android:textSize="@dimen/textSize_20" />
+
+            <RadioButton
+                android:id="@+id/radioBtn3_q4a_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="Expecting the same expenses as present"
+                android:textSize="@dimen/textSize_20" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_q5_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin25"
+            android:gravity="center"
+            android:text="How Will You Be Repaying any Loans After Retirement?"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintTop_toBottomOf="@id/radioGroup_q4a_corpus_retirement" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup_q5_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txt_q5_corpus_retirement">
+
+            <RadioButton
+                android:id="@+id/radioBtn1_q5_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="Yes"
+                android:textSize="@dimen/textSize_20" />
+
+            <RadioButton
+                android:id="@+id/radioBtn2_q5_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="No"
+                android:textSize="@dimen/textSize_20" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_q5a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin25"
+            android:gravity="center"
+            android:text="Loan Details"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintTop_toBottomOf="@id/radioGroup_q5_corpus_retirement" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q5a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/txt_q5a_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q5a_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="Years Left To repay (eg 10 yrs)"
+                android:inputType="number"
+                android:text="5"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q52a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/text_q5a_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q52a_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="EMI eg 10000"
+                android:inputType="number"
+                android:text="10000"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txt_q6_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin25"
+            android:gravity="center"
+            android:text="Do you have adequate health cover?"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintTop_toBottomOf="@id/text_q52a_corpus_retirement" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup_q6_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txt_q6_corpus_retirement">
+
+            <RadioButton
+                android:id="@+id/radioBtn1_q6_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="Yes"
+                android:textSize="@dimen/textSize_20" />
+
+            <RadioButton
+                android:id="@+id/radioBtn2_q6_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="No"
+                android:textSize="@dimen/textSize_20" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_q7_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin25"
+            android:gravity="center"
+            android:text="Will any of your goals extend into retirement?"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintTop_toBottomOf="@id/radioGroup_q6_corpus_retirement" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup_q7_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txt_q7_corpus_retirement">
+
+            <RadioButton
+                android:id="@+id/radioBtn1_q7_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="Yes"
+                android:textSize="@dimen/textSize_20" />
+
+            <RadioButton
+                android:id="@+id/radioBtn2_q7_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="No"
+                android:textSize="@dimen/textSize_20" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_q7a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin25"
+            android:gravity="center"
+            android:text="Goal Details"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintTop_toBottomOf="@id/radioGroup_q7_corpus_retirement" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q7a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/txt_q7a_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q7a_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="Goal"
+                android:text="YOLO"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q72a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/text_q7a_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q72a_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="Future Costs (eg 1000000)"
+                android:inputType="number"
+                android:text="500000"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/txt_q8_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin25"
+            android:gravity="center"
+            android:text="Will you have any regular Income after Retirement?"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintTop_toBottomOf="@id/text_q72a_corpus_retirement" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup_q8_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txt_q8_corpus_retirement">
+
+            <RadioButton
+                android:id="@+id/radioBtn1_q8_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="Yes"
+                android:textSize="@dimen/textSize_20" />
+
+            <RadioButton
+                android:id="@+id/radioBtn2_q8_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="No"
+                android:textSize="@dimen/textSize_20" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_q8a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin25"
+            android:gravity="center"
+            android:text="Income Details"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/textSize_25"
+            app:layout_constraintTop_toBottomOf="@id/radioGroup_q8_corpus_retirement" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q8a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/txt_q8a_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q8a_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="Monthly Pension (eg 0)"
+                android:inputType="number"
+                android:text="0"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q82a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/text_q8a_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q82a_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="Monthly Rent (eg 10000)"
+                android:inputType="number"
+                android:text="15000"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q83a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/text_q82a_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q83a_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="Monthly Allowance (eg 0)"
+                android:inputType="number"
+                android:text="0"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_q84a_corpus_retirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin25"
+            app:layout_constraintTop_toBottomOf="@id/text_q83a_corpus_retirement">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edt_q84a_corpus_retirement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_question"
+                android:drawablePadding="@dimen/padd_5"
+                android:hint="Other Sources (eg 10000)"
+                android:inputType="number"
+                android:text="0"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20" />
+        </android.support.design.widget.TextInputLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

@@ -21,6 +21,12 @@
             android:id="@+id/nav_stocks"
             android:icon="@drawable/ic_document_box"
             android:title="Stocks" />
+
+        <item
+            android:id="@+id/nav_retirement_corpus"
+            android:icon="@drawable/ic_rupee_indian"
+            android:title="My Retirement Corpus" />
+
         <item
             android:id="@+id/nav_sign_out"
             android:icon="@drawable/img_login_person"

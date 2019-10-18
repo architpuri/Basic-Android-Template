@@ -13,9 +13,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    public static final String baseUrl = "http://ec2-13-233-172-166.ap-south-1.compute.amazonaws.com:8080/";
+    //public static final String baseUrl = "http://ec2-13-233-172-166.ap-south-1.compute.amazonaws.com:8080/";
 
-    //public static final String baseUrl="http://192.168.43.21:8080/";
+    public static final String baseUrl="http://192.168.43.21:8080/";
     private static MoneyService moneyService = null;
 
     private ApiClient() {

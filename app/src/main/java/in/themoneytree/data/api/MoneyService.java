@@ -1,7 +1,8 @@
 package in.themoneytree.data.api;
 
 import in.themoneytree.data.model.GeneralResponse;
-import in.themoneytree.data.model.UserResponse;
+import in.themoneytree.data.model.expense.ExpenseListResponse;
+import in.themoneytree.data.model.user.UserResponse;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -22,8 +23,9 @@ public interface MoneyService {
     @FormUrlEncoded
     @POST("/api/users/register")
     Call<GeneralResponse> sendUserDetails(@Field("userName") String userName,
-                                          @Field("password") String password,
+                                          @Field("encryptedPassword") byte[] encryptedPassword,
                                           @Field("fullName") String fullName,
+                                          @Field("userType") int userType,
                                           @Field("mobileNumber") String mobileNumber);
 
     @GET("/api/users/{userId}")
@@ -62,4 +64,8 @@ public interface MoneyService {
                                       @Field("notificationTopic") String topic,
                                       @Field("notificationTitle") String title,
                                       @Field("notificationBody") String body);
+
+    //Expenses -------------------------------------------------------------------------------
+    @GET("/api/{userId}/expenses")
+    Call<ExpenseListResponse> getExpenditure(@Path("userId") Integer userId);
 }

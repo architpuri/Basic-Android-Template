@@ -4,15 +4,48 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
+        android:id="@+id/txt_title_privacyPolicy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/textSize_25"
         android:textColor="@color/colorBlack"
+        android:layout_marginTop="@dimen/margin25"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="Privacy Policy"/>
+    <ScrollView
+        app:layout_constraintTop_toBottomOf="@id/txt_title_privacyPolicy"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_height="wrap_content">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="250dp">
+            <TextView
+                android:id="@+id/txt_info_privacyPolicy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_10"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:singleLine="false"
+                android:text="@string/privacy_policy"
+                android:textColor="@color/colorBlack" />
+            <TextView
+                android:id="@+id/txt_link_privacyPolicy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_10"
+                app:layout_constraintTop_toBottomOf="@id/txt_info_privacyPolicy"
+                app:layout_constraintStart_toStartOf="parent"
+                android:singleLine="false"
+                android:text="@string/privacy_policy_link"
+                android:textColor="@color/colorPrimary"/>
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_drawerOpen_privacyPolicy"
         android:layout_width="wrap_content"

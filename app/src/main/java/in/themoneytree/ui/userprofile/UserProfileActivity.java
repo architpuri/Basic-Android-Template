@@ -12,15 +12,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,8 +27,8 @@ import in.themoneytree.data.api.ApiConstants;
 import in.themoneytree.data.api.MoneyService;
 import in.themoneytree.data.local.PrefManager;
 import in.themoneytree.data.model.GeneralResponse;
-import in.themoneytree.data.model.User;
-import in.themoneytree.data.model.UserResponse;
+import in.themoneytree.data.model.user.User;
+import in.themoneytree.data.model.user.UserResponse;
 import in.themoneytree.ui.base.BaseActivity;
 import in.themoneytree.ui.common.UiConstants;
 import in.themoneytree.ui.home.HomeActivity;

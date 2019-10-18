@@ -41,6 +41,9 @@
         <activity android:name=".utils.upload.PdfActivity"/>
         <activity android:name=".utils.upload.VideoActivity"/>
         <activity android:name=".ui.login.ForgotActivity"/>
+        <activity android:name=".ui.instruments.InstrumentActivity"/>
+        <activity android:name=".ui.editinstrument.EditInstrumentActivity"/>
+        <activity android:name=".ui.retirement.RetirementActivity"/>
     </application>
 
 </manifest>

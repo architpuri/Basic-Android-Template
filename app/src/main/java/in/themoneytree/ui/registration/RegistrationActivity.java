@@ -26,6 +26,7 @@ import in.themoneytree.data.api.ApiClient;
 import in.themoneytree.data.api.ApiConstants;
 import in.themoneytree.data.api.MoneyService;
 import in.themoneytree.data.model.GeneralResponse;
+import in.themoneytree.data.security.Encrypter;
 import in.themoneytree.ui.login.LoginActivity;
 import in.themoneytree.utils.CommonUtils;
 import retrofit2.Call;
@@ -109,8 +110,9 @@ public class RegistrationActivity extends AppCompatActivity {
         MoneyService colioService = ApiClient.getInstance();
         Call<GeneralResponse> sendUserDetailsRequest = colioService.sendUserDetails(
                 edtUsername.getText().toString(),
-                edtPassword.getText().toString(),
+                Encrypter.encryption(edtPassword.getText().toString()),
                 edtFullName.getText().toString(),
+                0,
                 mobile);
         sendUserDetailsRequest.enqueue(new Callback<GeneralResponse>() {
             @Override
