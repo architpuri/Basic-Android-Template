@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        android:id="@+id/txt_title_riskHorizon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin25"
+        android:text="Risk Horizon"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_q1_profileRisk"
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin25"
+        android:text="1. I would describe my knowledge of investments as:"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_20"
+        app:layout_constraintTop_toBottomOf="@id/txt_title_riskHorizon" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup_q1_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        app:layout_constraintTop_toBottomOf="@id/txt_q1_profileRisk">
+
+        <RadioButton
+            android:id="@+id/radioBtn1_q1_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="None"
+            android:textSize="@dimen/textSize_20" />
+
+        <RadioButton
+            android:id="@+id/radioBtn2_q1_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Limited"
+            android:textSize="@dimen/textSize_20" />
+
+        <RadioButton
+            android:id="@+id/radioBtn3_q1_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Good"
+            android:textSize="@dimen/textSize_20" />
+        <RadioButton
+            android:id="@+id/radioBtn4_q1_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Extensive"
+            android:textSize="@dimen/textSize_20" />
+    </RadioGroup>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        android:id="@+id/txt_q2_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin25"
+        android:text="2.  When I invest my money, I am: "
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_20"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup_q1_profileRisk" />
+
+    <RadioGroup
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        android:id="@+id/radioGroup_q2_profileRisk"
+        app:layout_constraintEnd_toEndOf="@id/guide_right_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txt_q2_profileRisk">
+
+        <RadioButton
+            android:id="@+id/radioBtn1_q2_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Most concerned about my  investment losing value"
+            android:textSize="@dimen/textSize_20" />
+
+        <RadioButton
+            android:id="@+id/radioBtn2_q2_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Equally concerned about my  investment losing or gaining value"
+            android:textSize="@dimen/textSize_20" />
+
+        <RadioButton
+            android:id="@+id/radioBtn3_q2_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Most concerned about my  investment gaining value"
+            android:textSize="@dimen/textSize_20" />
+    </RadioGroup>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        android:id="@+id/txt_q3_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin25"
+        android:text="3. Select the investments you currently own : "
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_20"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup_q2_profileRisk" />
+
+    <RadioGroup
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        android:id="@+id/radioGroup_q3_profileRisk"
+        app:layout_constraintEnd_toEndOf="@id/guide_right_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txt_q3_profileRisk">
+
+        <RadioButton
+            android:id="@+id/radioBtn1_q3_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Bonds and/or bond funds"
+            android:textSize="@dimen/textSize_20" />
+
+        <RadioButton
+            android:id="@+id/radioBtn2_q3_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Stock and/or stock funds"
+            android:textSize="@dimen/textSize_20" />
+
+        <RadioButton
+            android:id="@+id/radioBtn3_q3_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="International securities and/or international funds"
+            android:textSize="@dimen/textSize_20" />
+    </RadioGroup>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        android:id="@+id/txt_q4_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin25"
+        android:text="4. Consider this scenario: Imagine that in the past three months, the overall stock market lost 25% of its value. An individual stock investment you own also lost 25% of its value. What would you do? "
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_20"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup_q3_profileRisk" />
+
+    <RadioGroup
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        android:id="@+id/radioGroup_q4_profileRisk"
+        app:layout_constraintEnd_toEndOf="@id/guide_right_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txt_q4_profileRisk">
+
+        <RadioButton
+            android:id="@+id/radioBtn1_q4_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Sell all of my shares"
+            android:textSize="@dimen/textSize_20" />
+
+        <RadioButton
+            android:id="@+id/radioBtn2_q4_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Sell some of my shares"
+            android:textSize="@dimen/textSize_20" />
+
+        <RadioButton
+            android:id="@+id/radioBtn3_q4_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Do Nothing"
+            android:textSize="@dimen/textSize_20" />
+        <RadioButton
+            android:id="@+id/radioBtn4_q4_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="Buy more Shares"
+            android:textSize="@dimen/textSize_20" />
+    </RadioGroup>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        android:id="@+id/txt_q5_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin25"
+        android:text="5.   Review the chart below. We’ve outlined the most likely best-case and worst-case annual returns of five hypothetical investment plans. Which range of possible outcomes is most acceptable to you? The figures are hypothetical and do not represent the performance of any particular investment. "
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_20"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup_q4_profileRisk" />
+    <ImageView
+        android:id="@+id/img_q5_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/risk_q5"
+        app:layout_constraintTop_toBottomOf="@id/txt_q5_profileRisk"
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        app:layout_constraintEnd_toEndOf="@id/guide_right_profileRisk"/>
+    <RadioGroup
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        android:id="@+id/radioGroup_q5_profileRisk"
+        app:layout_constraintEnd_toEndOf="@id/guide_right_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/img_q5_profileRisk">
+
+        <RadioButton
+            android:id="@+id/radioBtn1_q5_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="A"
+            android:textSize="@dimen/textSize_20" />
+
+        <RadioButton
+            android:id="@+id/radioBtn2_q5_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="B"
+            android:textSize="@dimen/textSize_20" />
+
+        <RadioButton
+            android:id="@+id/radioBtn3_q5_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="C"
+            android:textSize="@dimen/textSize_20" />
+        <RadioButton
+            android:id="@+id/radioBtn4_q5_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="D"
+            android:textSize="@dimen/textSize_20" />
+        <RadioButton
+            android:id="@+id/radioBtn5_q5_profileRisk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="E"
+            android:textSize="@dimen/textSize_20" />
+    </RadioGroup>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        android:id="@+id/txt_result_riskHorizon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_outline_rectangle"
+        android:layout_marginTop="@dimen/margin25"
+        android:text="Risk Horizon Score : "
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup_q5_profileRisk" />
+    <Button
+        android:id="@+id/btn_proceed_riskHorizon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/guide_left_profileRisk"
+        app:layout_constraintTop_toBottomOf="@id/txt_result_riskHorizon"
+        android:text="Proceed"
+        android:layout_marginTop="@dimen/margin25"
+        android:background="@drawable/btn_outline_rectangle"
+        app:layout_constraintEnd_toEndOf="@id/guide_right_profileRisk"
+        android:textAllCaps="false"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_left_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_right_profileRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -39,7 +39,7 @@
                 app:layout_constraintTop_toBottomOf="@id/txt_title_tax" />
 
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_taxCalculate_tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
                         android:textSize="@dimen/textSize_20" />
                 </RadioGroup>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_taxableSalary_tax"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
                     android:layout_marginTop="@dimen/margin25"
                     app:layout_constraintTop_toBottomOf="@id/radioGroup_age_tax">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_taxableSalary_tax"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -165,9 +165,9 @@
                         android:hint="Taxable Salary"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textSize_20" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_interestIncome_tax"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
                     app:layout_constraintTop_toBottomOf="@id/text_taxableSalary_tax"
                     tools:layout_editor_absoluteX="80dp">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_interestIncome_tax"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -185,9 +185,9 @@
                         android:hint="Income From Interest"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textSize_20" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_interestHome_tax"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -195,7 +195,7 @@
                     android:layout_marginTop="@dimen/margin25"
                     app:layout_constraintTop_toBottomOf="@id/text_interestIncome_tax">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_interestHome_tax"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -204,9 +204,9 @@
                         android:hint="Interest Paid on Home Loan"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textSize_20" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_interestLoan_tax"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -214,7 +214,7 @@
                     android:layout_marginTop="@dimen/margin25"
                     app:layout_constraintTop_toBottomOf="@id/text_interestHome_tax">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_interestLoan_tax"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -223,9 +223,9 @@
                         android:hint="Interest Paid on Loan"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textSize_20" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_rentalIncome_tax"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -233,7 +233,7 @@
                     android:layout_marginTop="@dimen/margin25"
                     app:layout_constraintTop_toBottomOf="@id/text_interestLoan_tax">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_rentalIncome_tax"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -242,8 +242,8 @@
                         android:hint="Rental Income Received"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textSize_20" />
-                </android.support.design.widget.TextInputLayout>
-            </android.support.constraint.ConstraintLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
                 android:id="@+id/btn_taxSlabs_tax"
@@ -258,7 +258,7 @@
                 android:textSize="@dimen/textSize_25"
                 app:layout_constraintTop_toBottomOf="@id/constraint_taxCalculate_tax" />
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_taxSlabs_tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -273,7 +273,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/txt_taxSaved_tax"
@@ -315,7 +315,7 @@
                 android:textSize="@dimen/textSize_25"
                 app:layout_constraintTop_toBottomOf="@id/txt_taxSaved_tax" />
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_taxSave_tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -344,13 +344,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_recommendationTypes_tax" />
 
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_drawerOpen_tax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -361,4 +361,4 @@
         android:src="@drawable/ic_apps_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

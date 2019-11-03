@@ -2,6 +2,7 @@ package in.themoneytree.data.api;
 
 import in.themoneytree.data.model.GeneralResponse;
 import in.themoneytree.data.model.expense.ExpenseListResponse;
+import in.themoneytree.data.model.portfolio.PortfolioResponse;
 import in.themoneytree.data.model.user.UserResponse;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -65,7 +66,27 @@ public interface MoneyService {
                                       @Field("notificationTitle") String title,
                                       @Field("notificationBody") String body);
 
+    //Portfolio -------------------------------------------------------------------------------
+    @GET("/api/{userId}/portfolios")
+    Call<PortfolioResponse> getPortfolio(@Path("userId") Integer userId);
+
+    @POST("/api/{userId}/portfolios/new")
+    @FormUrlEncoded
+    Call<GeneralResponse> sendScores(@Path("userId") Integer userId,
+                                     @Field("riskScore") Integer riskScore,
+                                     @Field("timeScore") Integer timeScore,
+                                     @Field("retirementCorpusAmount") Double retirementCorpusAmount);
+
     //Expenses -------------------------------------------------------------------------------
     @GET("/api/{userId}/expenses")
     Call<ExpenseListResponse> getExpenditure(@Path("userId") Integer userId);
+
+    @FormUrlEncoded
+    @POST("/api/{userId}/expenses/new")
+    Call<GeneralResponse> addNewExpense(@Path("userId") Integer userId,
+                                          @Field("expenseName") String expenseName,
+                                          @Field("expenseAmount") Double expenseAmount,
+                                          @Field("paymentType") Integer paymentType,
+                                          @Field("paymentSourceId") Integer paymentSourceId);
+
 }

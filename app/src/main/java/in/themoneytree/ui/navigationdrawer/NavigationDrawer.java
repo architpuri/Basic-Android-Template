@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,7 +58,7 @@ public abstract class NavigationDrawer extends AppCompatActivity {
     private Bitmap bitmap;
     private Boolean isProfileClicked;
     private Intent intent;
-    private static final String TAG = "NAVIGATION DRAWER";
+    private static final String TAG = "NAVIGATION_DRAWER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,7 +156,6 @@ public abstract class NavigationDrawer extends AppCompatActivity {
 
     private void setUpNavigationView() {
         changeCurrentFocus();
-        setUserDetails(getApplicationContext());
         loadNavHeader();
         setUpNavigationViewBody();
     }
@@ -175,12 +174,14 @@ public abstract class NavigationDrawer extends AppCompatActivity {
                     case R.id.nav_home: {
                         if (getCurrentTag() == UiConstants.TAG_HOME) {
                         } else {
-                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                            intent.putExtra("source", TAG);
+                            startActivity(intent);
                         }
                         break;
                     }
                     case R.id.nav_portfolio: {
-                        if (getCurrentTag() == UiConstants.TAG_EXPENDITURE) {
+                        if (getCurrentTag() == UiConstants.TAG_PORTFOLIO) {
                         } else {
                             startActivity(new Intent(getApplicationContext(), PortfolioActivity.class));
                         }
@@ -323,42 +324,4 @@ public abstract class NavigationDrawer extends AppCompatActivity {
             navigationView.getMenu().getItem(currentIndex).setChecked(true);
     }
 
-
-    private void setUserDetails(Context context) {
-        MoneyService moneyService = ApiClient.getInstance();
-        Integer userId = Integer.parseInt(PrefManager.getInstance(context).getUserId());
-        Call<UserResponse> getUserRequest = moneyService.getUserInfo(userId);
-        getUserRequest.enqueue(new Callback<UserResponse>() {
-            @Override
-            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                if (response.code() == ApiConstants.SUCCESS) {
-                    try {
-                        User user = response.body().getuser();
-                        Log.d(TAG, user.isUserEnabled() + "Enable");
-                        if (user.isUserEnabled()) {
-                            PrefManager.getInstance(context).setUserEmail(user.getUserName());
-                            PrefManager.getInstance(context).setUserName(user.getFullName());
-                            PrefManager.getInstance(context).setUserContact(user.getMobileNumber());
-                            PrefManager.getInstance(context).setUserImageUrl(user.getUserImageUrl());
-                            PrefManager.getInstance(context).setBackgroundImg(user.getUserBackgroundImageUrl());
-                            PrefManager.getInstance(context).setUserType(user.getUserType() + "");
-                            PrefManager.getInstance(context).setAccessToken(user.getUserAccessToken());
-                        } else {
-                            CommonUtils.showToast(getApplicationContext(), "Error in Fetching Image");
-                        }
-                    } catch (Exception e) {
-                        CommonUtils.exceptionHandling(TAG, e);
-                    }
-                } else {
-
-                    CommonUtils.showToast(getApplicationContext(), "MESSAGE" + response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
-                CommonUtils.failureShow(TAG, getApplicationContext());
-            }
-        });
-    }
 }

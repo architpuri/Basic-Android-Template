@@ -2,7 +2,7 @@ package in.themoneytree.data.local;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 public class PrefManager {
     private final static String PREFERENCE_NAME = "com.themoneytree.com";
@@ -12,6 +12,7 @@ public class PrefManager {
     private final String FIRST_TIME_USER = "com.themoneytree.first_time_user";
     private final String ACCESS_TOKEN = "com.themoneytree.access_token";
     private final String USER_ID = "com.themoneytree.user_id";
+    private final String PORTFOLIO_ID = "com.themoneytree.portfolio_id";
     private final String USER_EMAIL = "com.themoneytree.user_email";
     private final String USER_PASSWORD = "com.themoneytree.user_password";
     private final String USER_IMAGE_URL = "com.themoneytree.user_image_url";
@@ -83,6 +84,13 @@ public class PrefManager {
 
     public void setUserId(String userId) {
         sharedPreferences.edit().putString(USER_ID, userId).apply();
+    }
+    public String getPortfolioId() {
+        return sharedPreferences.getString(PORTFOLIO_ID, "-1");
+    }
+
+    public void setPortfolioId(String portfolioId) {
+        sharedPreferences.edit().putString(PORTFOLIO_ID, portfolioId).apply();
     }
 
     public String getUserEmail() {

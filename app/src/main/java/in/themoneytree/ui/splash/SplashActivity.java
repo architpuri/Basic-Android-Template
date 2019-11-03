@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,7 +19,7 @@ import in.themoneytree.ui.login.LoginActivity;
 public class SplashActivity extends AppCompatActivity {
     private static int splash_time_out = 1500;
     private TextView textView;
-
+    private final String TAG="SPLASH_ACTIVITY";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,9 @@ public class SplashActivity extends AppCompatActivity {
             if (isValid) {
                 //getDetails from Shared Prefernces id,passwd,idtype=1 == student
                 //already logged in
-                startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                intent.putExtra("source",TAG);
+                startActivity(intent);
                 finish();
             } else {
                 //new Login

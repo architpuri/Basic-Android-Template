@@ -1,8 +1,8 @@
 package in.themoneytree.ui.expenditure;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +39,7 @@ public class ExpenditureListAdapter extends RecyclerView.Adapter<ExpenditureList
     public void onBindViewHolder(@NonNull ExpenditureListAdapter.ViewHolder holder, int position) {
         Expense expense = expenses.get(position);
         holder.expenseName.setText(expense.getExpenseName());
-        holder.expenseAmount.setText(expense.getExpenseAmount());
+        holder.expenseAmount.setText(expense.getExpenseAmount()+"");
     }
 
     @Override

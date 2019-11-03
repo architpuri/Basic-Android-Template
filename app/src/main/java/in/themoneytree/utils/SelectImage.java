@@ -10,6 +10,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,10 +24,10 @@ import static in.themoneytree.ui.common.UiConstants.REQUEST_CAMERA;
 import static in.themoneytree.ui.common.UiConstants.SELECT_FILE;
 
 
-public class SelectImage extends Activity {
+public class SelectImage extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE =REQUEST_CAMERA ;
     private static Context context;
-    private static Activity activity;
+    private static AppCompatActivity activity;
     private static String userChoosenTask;
     private static File file = null;
     private static File phFile = null;
@@ -33,10 +36,10 @@ public class SelectImage extends Activity {
     private static String currentPhotoPath;
 
     public static File selectImageFunctionality(Context context) {
-        activity = (Activity) context;
+        activity = (AppCompatActivity) context;
         final CharSequence[] items = {"Take Photo", "Choose from Library",
                 "Cancel"};
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Add Photo!");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
@@ -59,7 +62,7 @@ public class SelectImage extends Activity {
         return phFile;
     }
 
-    private static void cameraIntent(Activity activity) {
+    private static void cameraIntent(AppCompatActivity activity) {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (cameraIntent.resolveActivity(activity.getPackageManager()) != null) {
             // Create the File where the photo should go
@@ -99,7 +102,7 @@ public class SelectImage extends Activity {
         return image;
     }
 
-    private static void galleryIntent(Activity activity) {
+    private static void galleryIntent(AppCompatActivity activity) {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);//

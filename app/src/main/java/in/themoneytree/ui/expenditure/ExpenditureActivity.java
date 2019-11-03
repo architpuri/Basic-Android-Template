@@ -1,20 +1,22 @@
 package in.themoneytree.ui.expenditure;
 
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
@@ -30,7 +32,6 @@ import in.themoneytree.data.model.expense.Expense;
 import in.themoneytree.data.model.expense.ExpenseListResponse;
 import in.themoneytree.ui.base.BaseActivity;
 import in.themoneytree.ui.common.UiConstants;
-import in.themoneytree.ui.login.LoginActivity;
 import in.themoneytree.utils.CommonUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,9 +60,15 @@ public class ExpenditureActivity extends BaseActivity {
     RecyclerView recyclerExpensesExpenditure;
     @BindView(R.id.constraint_add_expenditure)
     ConstraintLayout constraintAddExpenditure;
+    @BindView(R.id.txt_monthlyAmount_expenditure)
+    TextView txtMonthlyAmount;
+    @BindView(R.id.txt_background_expenditure)
+    TextView txtBackground;
+    @BindView(R.id.btn_submitExpense_expenditure)
+    Button btnSubmitExpense;
     private DrawerLayout drawer;
     private List<Expense> expenses;
-    private boolean isAddScreenActive=false;
+    private boolean isAddScreenActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,16 +87,52 @@ public class ExpenditureActivity extends BaseActivity {
         btnAddExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isAddScreenActive){
-                    isAddScreenActive=false;
+                if (isAddScreenActive) {
+                    isAddScreenActive = false;
                     constraintAddExpenditure.setVisibility(View.GONE);
-                }else{
-                    isAddScreenActive=true;
+                } else {
+                    isAddScreenActive = true;
                     constraintAddExpenditure.setVisibility(View.VISIBLE);
                 }
             }
         });
+        btnSubmitExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (wantToAddExpense()) {
+                    addNewExpense();
+                }
+            }
+        });
 
+    }
+
+    private boolean wantToAddExpense() {
+        String name = edtName.getText().toString().trim();
+        String amount = edtAmount.getText().toString().trim();
+        if (TextUtils.isEmpty(name)) {
+            if (TextUtils.isEmpty(amount)) {
+                return false;
+            } else {
+                CommonUtils
+                        .wrongInputErrorMsg(textName, "Please enter name", edtName);
+            }
+        } else {
+            if (TextUtils.isEmpty(amount)) {
+                CommonUtils
+                        .wrongInputErrorMsg(textAmount, "Please enter amount", edtAmount);
+            } else {
+                try {
+                    double a = Double.parseDouble(amount);
+                } catch (Exception e) {
+                    CommonUtils
+                            .wrongInputErrorMsg(textAmount, "Characters allowed are 0-9,single(.),-", edtAmount);
+                    return false;
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -116,7 +159,6 @@ public class ExpenditureActivity extends BaseActivity {
         recyclerExpensesExpenditure.addItemDecoration(itemDecorator);
         recyclerExpensesExpenditure.addItemDecoration(new DividerItemDecoration(ExpenditureActivity.this, DividerItemDecoration.HORIZONTAL));
         recyclerExpensesExpenditure.setAdapter(expenditureAdapter);
-
     }
 
 
@@ -129,19 +171,58 @@ public class ExpenditureActivity extends BaseActivity {
             public void onResponse(Call<ExpenseListResponse> call, Response<ExpenseListResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getGeneralResponse().getStatusCode() == ApiConstants.SUCCESS) {
-                        expenses=response.body().getExpenses();
-                        setUpRecycler();
-                    }else{
-                        CommonUtils.showLongToast(ExpenditureActivity.this,"Some Error Occurred");
+                        expenses = response.body().getExpenses();
+                        if (expenses.size() == 0) {
+                            txtBackground.setVisibility(View.VISIBLE);
+                        } else {
+                            setUpRecycler();
+                            setMonthlyAmount();
+                            txtBackground.setVisibility(View.GONE);
+                        }
+                    } else {
+                        CommonUtils.showLongToast(ExpenditureActivity.this, "Some Error Occurred");
                     }
-                    }
+                }
             }
 
             @Override
             public void onFailure(Call<ExpenseListResponse> call, Throwable t) {
-                CommonUtils.showToast(ExpenditureActivity.this, "Check Internet");
+                CommonUtils.onFailureMessage(getApplicationContext(), "Expenditure List Show Fail");
             }
         });
 
+    }
+
+    private void addNewExpense() {
+        Integer userId = Integer.parseInt(PrefManager.getInstance(getApplicationContext()).getUserId());
+        MoneyService moneyService = ApiClient.getInstance();
+        Call<GeneralResponse> expenseAddRequest = moneyService.addNewExpense(userId, edtName.getText().toString(), Double.parseDouble(edtAmount.getText().toString()), -1, -1);
+        expenseAddRequest.enqueue(new Callback<GeneralResponse>() {
+            @Override
+            public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatusCode() == ApiConstants.SUCCESS) {
+
+                    } else {
+                        CommonUtils.showToast(getApplicationContext(), response.body().getMessage());
+                    }
+                } else {
+                    CommonUtils.showToast(getApplicationContext(), response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GeneralResponse> call, Throwable t) {
+                CommonUtils.onFailureMessage(getApplicationContext(), "Expenditure Add Fail");
+            }
+        });
+    }
+
+    private void setMonthlyAmount() {
+        double amount = 0;
+        for (Expense e : expenses) {
+            amount = amount + e.getExpenseAmount();
+        }
+        txtMonthlyAmount.setText(amount + "");
     }
 }

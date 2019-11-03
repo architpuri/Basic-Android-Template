@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorWhite">
@@ -21,39 +21,81 @@
                 android:layout_marginTop="@dimen/margin25"
                 android:background="@drawable/btn_outline_rectangle"
                 android:padding="@dimen/padd_5"
-                android:text="Stocks Recommended For You"
+                android:text="Home"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_25"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/txt_riskGeneral_homeActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin25"
+                android:background="@drawable/btn_outline_rectangle"
+                android:padding="@dimen/padd_5"
+                android:text="General Score is"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_title_homeActivity" />
+            <TextView
+                android:id="@+id/txt_riskTime_homeActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin25"
+                android:background="@drawable/btn_outline_rectangle"
+                android:padding="@dimen/padd_5"
+                android:text="Time Score"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_riskGeneral_homeActivity" />
+            <TextView
+                android:id="@+id/txt_riskScore_homeActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin25"
+                android:background="@drawable/btn_outline_rectangle"
+                android:padding="@dimen/padd_5"
+                android:text="Risk Score"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_riskTime_homeActivity" />
 
-            <android.support.v7.widget.RecyclerView
+            <TextView
+                android:id="@+id/txt_stockList_homeActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin25"
+                android:background="@drawable/btn_outline_rectangle"
+                android:padding="@dimen/padd_5"
+                android:text="Stocks Recommended For You"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_riskScore_homeActivity" />
+
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_stockList_homeActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin25"
                 android:orientation="vertical"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/txt_title_homeActivity"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/txt_stockList_homeActivity"
                 tools:listitem="@layout/item_stock_recommendation" />
 
-            <Button
-                android:id="@+id/btn_shareList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Click to Get Share List in Excel Format"
-                android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/textSize_20"
-                app:layout_constraintBottom_toBottomOf="@id/recycler_stockList_homeActivity"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_drawerOpen_homeActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,4 +106,4 @@
         android:src="@drawable/ic_apps_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

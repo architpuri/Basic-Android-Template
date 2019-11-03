@@ -1,16 +1,15 @@
 package in.themoneytree.ui.stocks;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,27 +22,23 @@ import in.themoneytree.ui.common.UiConstants;
 import in.themoneytree.utils.CommonUtils;
 
 public class StocksActivity extends BaseActivity {
-    @BindView(R.id.btn_shareList)
-    Button btnShareList;
-    @BindView(R.id.recycler_stockList_homeActivity)
+    @BindView(R.id.recycler_stockList_stocksActivity)
     RecyclerView recyclerStockList;
+    @BindView(R.id.fab_drawerOpen_stocksActivity)
+    FloatingActionButton fabDrawerOpen;
     private StockListAdapter stockAdapter;
-    private static final String TAG="HOME ACTIVITY";
+    private DrawerLayout drawer;
+    private static final String TAG = "STOCKS ACTIVITY";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
-        btnShareList.setOnClickListener(new View.OnClickListener() {
+        fabDrawerOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://bit.do/Capstone_stocks"));
-                startActivity(browserIntent);
-                }catch (Exception e){
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),"Link Not Working",Toast.LENGTH_SHORT);
-                }
+                drawer = findViewById(R.id.drawer_layout);
+                drawer.openDrawer(GravityCompat.START);
             }
         });
         setRecyclerView();
@@ -61,14 +56,15 @@ public class StocksActivity extends BaseActivity {
 
     @Override
     public int getLayout() {
-        return R.layout.activity_home;
+        return R.layout.activity_stocks;
     }
+
     void setRecyclerView() {
         recyclerStockList.setVisibility(View.VISIBLE);
         stockAdapter = new StockListAdapter(getApplicationContext(), getStockList(), new StockClickListener() {
             @Override
             public void stockDetails(View v, int position) {
-                CommonUtils.showToast(getApplicationContext(),"Stock Details");
+                CommonUtils.showToast(getApplicationContext(), "Stock Details");
             }
         });
         stockAdapter.notifyDataSetChanged();
@@ -84,7 +80,7 @@ public class StocksActivity extends BaseActivity {
     }
 
     private List<String> getStockList() {
-        List<String> stocks=new ArrayList<>();
+        List<String> stocks = new ArrayList<>();
         stocks.add("Hindustan Unilever Limited");
         stocks.add("Tata Steel");
         stocks.add("Infosys");

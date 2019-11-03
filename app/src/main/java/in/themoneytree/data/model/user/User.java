@@ -2,6 +2,7 @@ package in.themoneytree.data.model.user;
 
 public class User {
     private Integer userId;
+    private Integer portfolioId;
     private String userName;
     private String password;
     private int userType;
@@ -17,7 +18,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer userId, String userName, String password, int userType, String fullName, String userImageUrl, String mobileNumber, String userBackgroundImageUrl, boolean userEnabled, boolean isMobileVerified, String userAccessToken, String permissionToken) {
+    public User(Integer userId, Integer portfolioId, String userName, String password, int userType, String fullName, String userImageUrl, String mobileNumber, String userBackgroundImageUrl, boolean userEnabled, boolean isMobileVerified, String userAccessToken, String permissionToken) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -30,6 +31,14 @@ public class User {
         this.isMobileVerified = isMobileVerified;
         this.userAccessToken = userAccessToken;
         this.permissionToken = permissionToken;
+    }
+
+    public Integer getPortfolioId() {
+        return portfolioId;
+    }
+
+    public void setPortfolioId(Integer portfolioId) {
+        this.portfolioId = portfolioId;
     }
 
     public Integer getUserId() {

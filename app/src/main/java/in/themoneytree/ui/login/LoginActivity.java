@@ -4,10 +4,14 @@ package in.themoneytree.ui.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -26,8 +30,9 @@ import in.themoneytree.data.local.PrefManager;
 import in.themoneytree.data.model.GeneralResponse;
 import in.themoneytree.data.model.user.User;
 import in.themoneytree.data.model.user.UserResponse;
+import in.themoneytree.ui.home.HomeActivity;
 import in.themoneytree.ui.registration.RegistrationActivity;
-import in.themoneytree.ui.riskprofile.RiskAnalyzerActivity;
+import in.themoneytree.ui.riskprofile.GeneralRiskAnalyzerActivity;
 import in.themoneytree.utils.CommonUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     @BindView(R.id.btn_registration)
     Button btnRegistration;
-    private Context context=LoginActivity.this;
+    private Context context = LoginActivity.this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     progressBar.setVisibility(View.VISIBLE);
                     //Allow Login first check from database
+                    //directLogin();
                     serverLogin(email, password);
                 }
             }
@@ -115,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                         setUserDetails(LoginActivity.this);
                     } else {
                         progressBar.setVisibility(View.GONE);
-                        CommonUtils.showToast(LoginActivity.this,response.body().getMessage());
+                        CommonUtils.showToast(LoginActivity.this, response.body().getMessage());
                     }
                 } else {
                     progressBar.setVisibility(View.GONE);
@@ -173,14 +179,14 @@ public class LoginActivity extends AppCompatActivity {
                             PrefManager.getInstance(context).setUserImageUrl(user.getUserImageUrl());
                             PrefManager.getInstance(context).setBackgroundImg(user.getUserBackgroundImageUrl());
                             PrefManager.getInstance(context).setUserType(user.getUserType() + "");
-                            try{
-                                if(Integer.parseInt(user.getUserAccessToken().substring(4,8))>1000){
-                                    PrefManager.getInstance(context).setAccessToken(user.getUserAccessToken());
-                                }
-                            }catch (Exception e){
-                                CommonUtils.exceptionHandling(TAG,e);
+                            PrefManager.getInstance(context).setAccessToken(user.getUserAccessToken());
+                            if (user.getPortfolioId() == -1) {
+                                startActivity(new Intent(context, GeneralRiskAnalyzerActivity.class));//remove after permission
+                            } else {
+                                Intent intent = new Intent(context, HomeActivity.class);
+                                intent.putExtra("source", TAG);
+                                startActivity(intent);
                             }
-                            startActivity(new Intent(context, RiskAnalyzerActivity.class));//remove after permission
                             //UiConstants.setUpPermissionList(context, HomeActivity.class);
                         } else {
                             progressBar.setVisibility(View.GONE);

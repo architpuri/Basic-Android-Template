@@ -1,7 +1,7 @@
 package in.themoneytree.data.api;
 
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

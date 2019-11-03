@@ -22,5 +22,5 @@ public class UiConstants {
     public static final String TAG_PORTFOLIO ="PORTFOLIO";
     public static final String TAG_STOCKS ="STOCKS" ;
     public static final String TAG_TAX="TAX" ;
-    public static final String TAG_RETIREMENT_CORPUS = "RETIREMENT CORPUS";
+    public static final String TAG_RETIREMENT_CORPUS = "RETIREMENT_CORPUS";
 }

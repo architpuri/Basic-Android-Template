@@ -2,22 +2,15 @@ package in.themoneytree.ui.registration;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -106,32 +99,34 @@ public class RegistrationActivity extends AppCompatActivity {
         }
         if (mobile.length() != 10) {
             CommonUtils.showToast(getApplicationContext(), "Check Mobile No");
-        }
-        MoneyService colioService = ApiClient.getInstance();
-        Call<GeneralResponse> sendUserDetailsRequest = colioService.sendUserDetails(
-                edtUsername.getText().toString(),
-                Encrypter.encryption(edtPassword.getText().toString()),
-                edtFullName.getText().toString(),
-                0,
-                mobile);
-        sendUserDetailsRequest.enqueue(new Callback<GeneralResponse>() {
-            @Override
-            public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
-                progressSubmit.setVisibility(View.GONE);
-                if (response.body().getStatusCode() == ApiConstants.CREATED) {
-                    CommonUtils.showToast(RegistrationActivity.this, "Success-Check Email for Verification");
-                    startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
-                } else {
-                    CommonUtils.showToast(RegistrationActivity.this, "Message - " + response.body().getMessage());
+        }else {
+            MoneyService colioService = ApiClient.getInstance();
+            Call<GeneralResponse> sendUserDetailsRequest = colioService.sendUserDetails(
+                    edtUsername.getText().toString(),
+                    Encrypter.encryption(edtPassword.getText().toString()),
+                    edtFullName.getText().toString(),
+                    0,
+                    mobile);
+            sendUserDetailsRequest.enqueue(new Callback<GeneralResponse>() {
+                @Override
+                public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
+                    progressSubmit.setVisibility(View.GONE);
+                    if (response.body().getStatusCode() == ApiConstants.CREATED) {
+                        CommonUtils.showToast(RegistrationActivity.this, "Success-Check Email for Verification");
+                        startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+                    } else {
+                        CommonUtils.showToast(RegistrationActivity.this, "Message - " + response.body().getMessage());
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<GeneralResponse> call, Throwable t) {
-                progressSubmit.setVisibility(View.GONE);
-                CommonUtils.failureShow(TAG, RegistrationActivity.this);
-            }
-        });
+                @Override
+                public void onFailure(Call<GeneralResponse> call, Throwable t) {
+                    progressSubmit.setVisibility(View.GONE);
+                    t.printStackTrace();
+                    CommonUtils.failureShow(TAG, RegistrationActivity.this);
+                }
+            });
+        }
     }
 
 }

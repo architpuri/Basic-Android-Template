@@ -2,11 +2,11 @@ package in.themoneytree.ui.riskprofile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,9 +19,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.themoneytree.R;
 import in.themoneytree.ui.home.HomeActivity;
+import in.themoneytree.ui.riskprofile.time.TimeAnalysisActivity;
 import in.themoneytree.utils.CommonUtils;
 
-public class RiskAnalyzerActivity extends AppCompatActivity {
+public class GeneralRiskAnalyzerActivity extends AppCompatActivity {
     @BindView(R.id.recycler_question_riskAnalyzer)
     RecyclerView recyclerQuestion;
     @BindView(R.id.btn_score_riskAnalyzer)
@@ -30,7 +31,7 @@ public class RiskAnalyzerActivity extends AppCompatActivity {
     Button btnSkip;
     private RiskQuestionAdapter questionAdapter;
     private static final String TAG = "RISK ANALYZER ACTIVITY";
-
+    double riskScore =0.0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,40 +42,44 @@ public class RiskAnalyzerActivity extends AppCompatActivity {
         btnScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showFinalRiskProfile(getSurveyResults());
+                getSurveyResults();
+                showFinalRiskProfile();
             }
         });
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                Intent intent = new Intent(getApplicationContext(), TimeAnalysisActivity.class);
+                intent.putExtra("source","GENERAL_RISK");
+                intent.putExtra("generalScore",riskScore);
+                startActivity(intent);
                 finish();
             }
         });
     }
 
-    private void showFinalRiskProfile(double riskScore) {
+    private void showFinalRiskProfile() {
         if(riskScore==0.0){
             //doNothing
             return;
         }
         btnScore.setText("Your Score is "+riskScore);
         btnSkip.setEnabled(true);
-        btnSkip.setText("Click here to get Recommended Stocks");
+        btnSkip.setText("Click here to Proceed");
     }
 
-    private double getSurveyResults() {
+    private void getSurveyResults() {
         int items=questionAdapter.getItemCount();
-        double riskScore=1;//More the score greater the risk
+        riskScore=1;//More the score greater the risk
         for (int i = 0; i < items; i++) {
             View view = recyclerQuestion.getChildAt(i);
             EditText answerEditText = view.findViewById(R.id.edt_userAnswer_itemQuestionList);
             if(answerEditText.getText()==null){
                 CommonUtils.showToast(getApplicationContext(),"Please fill All Details");
-                return 0.0;
+                riskScore=0.0;
             }if(answerEditText.getText().toString().matches("")){
                 CommonUtils.showToast(getApplicationContext(),"Please fill All Details");
-                return 0.0;
+                riskScore=0.0;
             }
             String answerValue = answerEditText.getText().toString();
             int value=1;
@@ -104,7 +109,6 @@ public class RiskAnalyzerActivity extends AppCompatActivity {
             }
             riskScore=riskScore+value*weight;
         }
-        return riskScore;
     }
 
 

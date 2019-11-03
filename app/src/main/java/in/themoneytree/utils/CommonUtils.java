@@ -9,8 +9,6 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.CountDownTimer;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -19,6 +17,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.app.Activity.RESULT_OK;
+import static androidx.appcompat.app.AppCompatActivity.RESULT_OK;
 
 public class CommonUtils {
     public static int fileTypeSelection = 0;
@@ -263,13 +264,18 @@ public class CommonUtils {
     }
 
     public static void failureShow(String TAG, Context context) {
-        Log.d(TAG, "Failure");
         if (checkInternetConnectivity(context)) {
             showToast(context, "Failure");
         } else {
-            showToast(context, "Check Internet Connection");
+            showLongToast(context, "Check Internet Connection");
         }
-
+    }
+    public static void onFailureMessage(Context context,String message) {
+        if (checkInternetConnectivity(context)) {
+            showToast(context,message);
+        } else {
+            showLongToast(context, "Check Internet Connection");
+        }
     }
 
     public static void selectFileTypeDialog(Context context) {
