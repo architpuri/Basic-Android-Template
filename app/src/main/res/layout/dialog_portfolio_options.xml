@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_dialogOptions"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_stream_dialogOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add a Income Stream"
+        android:padding="@dimen/padd_10"
+        android:gravity="center"
+        android:textSize="@dimen/textSize_20"
+        android:layout_margin="@dimen/margin_10"
+        android:background="@drawable/btn_outline_rectangle"/>
+
+    <TextView
+        android:id="@+id/txt_investment_dialogOptions"
+        android:padding="@dimen/padd_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add a New Investment"
+        android:gravity="center"
+        android:textSize="@dimen/textSize_20"
+        android:layout_margin="@dimen/margin_10"
+        android:background="@drawable/btn_outline_rectangle" />
+
+    <TextView
+        android:id="@+id/txt_transaction_dialogOptions"
+        android:padding="@dimen/padd_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add a Transaction"
+        android:gravity="center"
+        android:textSize="@dimen/textSize_20"
+        android:layout_margin="@dimen/margin_10"
+        android:background="@drawable/btn_outline_rectangle" />
+
+</LinearLayout>

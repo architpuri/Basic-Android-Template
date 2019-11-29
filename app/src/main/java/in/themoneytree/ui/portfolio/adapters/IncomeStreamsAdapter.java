@@ -1,24 +1,26 @@
-package in.themoneytree.adapters;
+package in.themoneytree.ui.portfolio.adapters;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 import in.themoneytree.R;
+import in.themoneytree.adapters.ClickListener;
 import in.themoneytree.data.model.incomestreams.IncomeStream;
 
-public class IncomeSourcesAdapter extends RecyclerView.Adapter<IncomeSourcesAdapter.ViewHolder> {
+public class IncomeStreamsAdapter extends RecyclerView.Adapter<IncomeStreamsAdapter.ViewHolder> {
     private List<IncomeStream> sources;
     private Context context;
     private final ClickListener listener;
 
-    public IncomeSourcesAdapter(List<IncomeStream> sources, Context context, ClickListener listener) {
+    public IncomeStreamsAdapter(List<IncomeStream> sources, Context context, ClickListener listener) {
         this.sources = sources;
         this.context = context;
         this.listener = listener;
@@ -26,16 +28,18 @@ public class IncomeSourcesAdapter extends RecyclerView.Adapter<IncomeSourcesAdap
 
     @NonNull
     @Override
-    public IncomeSourcesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public IncomeStreamsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_income_sources, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull IncomeSourcesAdapter.ViewHolder holder, int position) {
-        String sourceName=sources.get(position).toString();
-        holder.sourceName.setText("S-"+sourceName);
+    public void onBindViewHolder(@NonNull IncomeStreamsAdapter.ViewHolder holder, int position) {
+        IncomeStream source=sources.get(position);
+        holder.sourceName.setText(source.getName());
+        holder.sourceAmount.setText(source.getAmount()+"");
+        holder.sourceType.setText(source.getStreamInfo());
     }
 
     @Override

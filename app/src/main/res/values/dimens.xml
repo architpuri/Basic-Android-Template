@@ -1,7 +1,10 @@
 <resources><!--Common Dimens-->
     <dimen name="textSize_25">25sp</dimen>
+    <dimen name="line_height">2dp</dimen>
     <dimen name="textSize">25sp</dimen>
     <dimen name="textSize_20">20sp</dimen>
+    <dimen name="textSize_18">18sp</dimen>
+    <dimen name="textSize_15">15sp</dimen>
     <dimen name="padd_2">2dp</dimen>
     <dimen name="padd_5">5dp</dimen>
     <dimen name="padd_10">10dp</dimen>
@@ -9,8 +12,13 @@
     <dimen name="margin_10">10dp</dimen>
     <dimen name="margin_5">5dp</dimen>
     <dimen name="margin25">25dp</dimen>
+    <dimen name="margin50">50dp</dimen>
+    <dimen name="margin75">75dp</dimen>
+    <dimen name="margin100">100dp</dimen>
     <dimen name="elevation_2">2dp</dimen>
     <dimen name="elevation_5">5dp</dimen>
+    <dimen name="minHeight">30dp</dimen>
+    <dimen name="minBtnHeight">40dp</dimen>
     <!--Registration Form-->
     <dimen name="register_btn_height">60dp</dimen>
     <dimen name="register_btn_width">160dp</dimen>

@@ -79,9 +79,8 @@ public class LoginActivity extends AppCompatActivity {
                             .wrongInputErrorMsg(textLayoutPassword, "Please enter password", edtUserPassword);
                 } else if (!CommonUtils.isValidPassword(password)) {
                     CommonUtils
-                            .wrongInputErrorMsg(textLayoutPassword, "Please check password", edtUserPassword);
+                            .wrongInputErrorMsg(textLayoutPassword, "Please check password - Length > 6", edtUserPassword);
                 } else {
-
                     progressBar.setVisibility(View.VISIBLE);
                     //Allow Login first check from database
                     //directLogin();

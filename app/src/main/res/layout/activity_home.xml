@@ -18,79 +18,163 @@
                 android:id="@+id/txt_title_homeActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin25"
-                android:background="@drawable/btn_outline_rectangle"
-                android:padding="@dimen/padd_5"
+                android:padding="@dimen/margin_5"
                 android:text="Home"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/textSize_25"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-            <TextView
-                android:id="@+id/txt_riskGeneral_homeActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin25"
-                android:background="@drawable/btn_outline_rectangle"
-                android:padding="@dimen/padd_5"
-                android:text="General Score is"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/textSize_25"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_title_homeActivity" />
-            <TextView
-                android:id="@+id/txt_riskTime_homeActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin25"
-                android:background="@drawable/btn_outline_rectangle"
-                android:padding="@dimen/padd_5"
-                android:text="Time Score"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/textSize_25"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_riskGeneral_homeActivity" />
-            <TextView
-                android:id="@+id/txt_riskScore_homeActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin25"
-                android:background="@drawable/btn_outline_rectangle"
-                android:padding="@dimen/padd_5"
-                android:text="Risk Score"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/textSize_25"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_riskTime_homeActivity" />
-
-            <TextView
-                android:id="@+id/txt_stockList_homeActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin25"
-                android:background="@drawable/btn_outline_rectangle"
-                android:padding="@dimen/padd_5"
-                android:text="Stocks Recommended For You"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/textSize_25"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_riskScore_homeActivity" />
-
-
-
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_stockList_homeActivity"
+                android:id="@+id/recycler_stockTape_homeActivity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:layout_constraintTop_toBottomOf="@id/txt_title_homeActivity" />
+
+            <TextView
+                android:id="@+id/txt_indicesTitle_homeActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="Indices"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_stockTape_homeActivity" />
+
+            <ImageView
+                android:id="@+id/img_indicesTitle_homeActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:src="@drawable/ic_chevron_right"
+                app:layout_constraintBottom_toBottomOf="@id/txt_indicesTitle_homeActivity"
+                app:layout_constraintStart_toEndOf="@id/txt_indicesTitle_homeActivity"
+                app:layout_constraintTop_toTopOf="@id/txt_indicesTitle_homeActivity" />
+
+            <include
+                android:id="@+id/include_indices_homeActivity"
+                layout="@layout/layout_stock_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin25"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/txt_stockList_homeActivity"
-                tools:listitem="@layout/item_stock_recommendation" />
+                app:layout_constraintTop_toBottomOf="@id/txt_indicesTitle_homeActivity" />
 
+            <ImageView
+                android:id="@+id/line_indicesBottom_homeActivity"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@color/colorAccent"
+                app:layout_constraintTop_toBottomOf="@id/include_indices_homeActivity" />
+
+            <TextView
+                android:id="@+id/txt_corpusTitle_homeActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="My Corpus"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/include_indices_homeActivity" />
+
+            <ImageView
+                android:id="@+id/img_corpusTitle_homeActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:src="@drawable/ic_chevron_right"
+                app:layout_constraintBottom_toBottomOf="@id/txt_corpusTitle_homeActivity"
+                app:layout_constraintStart_toEndOf="@id/txt_corpusTitle_homeActivity"
+                app:layout_constraintTop_toTopOf="@id/txt_corpusTitle_homeActivity" />
+
+            <include
+                android:id="@+id/include_progress_homeActivity"
+                layout="@layout/include_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/txt_corpusTitle_homeActivity" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goal - 1,50,00,000"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/include_progress_homeActivity" />
+
+            <TextView
+                android:id="@+id/txt_currentCorpus_homeActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current - 45,00,000"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/include_progress_homeActivity" />
+
+            <ImageView
+                android:id="@+id/line_corpusBottom_homeActivity"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@color/colorAccent"
+                app:layout_constraintTop_toBottomOf="@id/txt_currentCorpus_homeActivity" />
+
+            <TextView
+                android:id="@+id/txt_portfolioTitle_homeActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="My Portfolio"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line_corpusBottom_homeActivity" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:src="@drawable/ic_chevron_right"
+                app:layout_constraintBottom_toBottomOf="@id/txt_portfolioTitle_homeActivity"
+                app:layout_constraintStart_toEndOf="@id/txt_portfolioTitle_homeActivity"
+                app:layout_constraintTop_toTopOf="@id/txt_portfolioTitle_homeActivity" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/chart_allocation_homeActivity"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/margin_10"
+                android:background="@drawable/btn_outline_rectangle"
+                app:layout_constraintTop_toBottomOf="@id/txt_portfolioTitle_homeActivity" />
+
+            <ImageView
+                android:id="@+id/line_portfolioBottom_homeActivity"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@color/colorAccent"
+                app:layout_constraintTop_toBottomOf="@id/chart_allocation_homeActivity" />
+
+            <TextView
+                android:id="@+id/txt_watchTitle_homeActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="My WatchList"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line_portfolioBottom_homeActivity" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:src="@drawable/ic_chevron_right"
+                app:layout_constraintBottom_toBottomOf="@id/txt_watchTitle_homeActivity"
+                app:layout_constraintStart_toEndOf="@id/txt_watchTitle_homeActivity"
+                app:layout_constraintTop_toTopOf="@id/txt_watchTitle_homeActivity" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

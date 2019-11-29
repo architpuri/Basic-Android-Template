@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txt_title_layoutHomeSections"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_5"
+        android:layout_marginEnd="@dimen/margin_5"
+        android:layout_marginBottom="@dimen/margin_5"
+        android:text="Indices"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintStart_toStartOf="@id/guide_left_layoutHomeSections"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/txt_title_layoutHomeSections"
+        android:layout_marginLeft="@dimen/margin_5"
+        android:src="@drawable/ic_chevron_right"
+        app:layout_constraintTop_toTopOf="@id/txt_title_layoutHomeSections"
+        app:layout_constraintBottom_toBottomOf="@id/txt_title_layoutHomeSections"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guide_left_layoutHomeSections"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

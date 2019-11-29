@@ -20,7 +20,7 @@ public class PrefManager {
     private final String USER_CONTACT_NO = "com.themoneytree.user_contact_no";
     private final String USER_BACKGROUND_IMG_URL = "com.themoneytree.user_background_img_url";
     private final String USER_TYPE = "com.themoneytree.user_type";
-
+    private final String UNIQUE_IDENTITY="com.themoneytree.unique_identity";
     private PrefManager(Context context) {
         sharedPreferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
     }
@@ -43,6 +43,16 @@ public class PrefManager {
     public void setUserImageUrl(@Nullable String imgUrl) {
         if (imgUrl != null) sharedPreferences.edit().putString(USER_IMAGE_URL, imgUrl).apply();
     }
+
+    public String getIdentity() {
+        return sharedPreferences.getString(UNIQUE_IDENTITY, "-1");
+    }
+
+    public void setIdentity(String id) {
+        if (id != null) sharedPreferences.edit().putString(UNIQUE_IDENTITY, id).apply();
+    }
+
+
 
     public void setUserName(String userDisplayName) {
         sharedPreferences.edit().putString(USER_DISPLAY_NAME, userDisplayName).apply();

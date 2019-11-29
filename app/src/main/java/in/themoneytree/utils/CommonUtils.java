@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.CountDownTimer;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.regex.Pattern;
 
 import in.themoneytree.R;
 import in.themoneytree.data.api.ApiClient;
@@ -71,7 +73,7 @@ public class CommonUtils {
 
     //Normal Check Constraints - PASSWORD
     public static boolean isValidPassword(String input) {
-        return input.length() > 4;
+        return input.length() > 6;
     }
 
     //To display input error msgs
@@ -96,6 +98,25 @@ public class CommonUtils {
             }
         });
     }
+
+    public static boolean isEditTextEmpty(final TextInputLayout textInputLayout, TextInputEditText editText) {
+        if(TextUtils.isEmpty(editText.getText())) {
+            wrongInputErrorMsg(textInputLayout,"This Field is Mandatory",editText);
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isNumber(final TextInputLayout textInputLayout, TextInputEditText editText){
+        try{
+            Double.parseDouble(editText.getText().toString());
+            return true;
+        }catch (Exception e){
+            wrongInputErrorMsg(textInputLayout,"Number Required",editText);
+        }
+        return false;
+    }
+
 
     public static void showToast(Context context, String msg) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
@@ -195,7 +216,7 @@ public class CommonUtils {
 
                     }
                 });*/
-        msg="Subscription Failed";
+        msg = "Subscription Failed";
         return msg;
     }
 
@@ -270,9 +291,10 @@ public class CommonUtils {
             showLongToast(context, "Check Internet Connection");
         }
     }
-    public static void onFailureMessage(Context context,String message) {
+
+    public static void onFailureMessage(Context context, String message) {
         if (checkInternetConnectivity(context)) {
-            showToast(context,message);
+            showToast(context, message);
         } else {
             showLongToast(context, "Check Internet Connection");
         }
@@ -406,5 +428,16 @@ public class CommonUtils {
             }
         }.start();
 
+    }
+
+    public static boolean checkEmptyInput(List<TextInputEditText> edits, List<TextInputLayout> layouts) {
+        int i = 0;
+        for (TextInputEditText edit : edits) {
+            if (CommonUtils.isEditTextEmpty(layouts.get(i), edit)) {
+                return false;
+            }
+            i++;
+        }
+        return true;
     }
 }

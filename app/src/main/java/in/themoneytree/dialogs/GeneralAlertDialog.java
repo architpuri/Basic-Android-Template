@@ -32,7 +32,7 @@ public class GeneralAlertDialog extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 // on success
                 Intent data = new Intent();
-                data.putExtra("markAttendance", true);
+                data.putExtra("Are you sure?", true);
                 getActivity().setResult(Activity.RESULT_OK, data);
             }
         });

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/root_dialogInvestment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_margin="@dimen/margin50"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_investmentName_dialogInvestment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_investmentName_dialogInvestment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Investment Name" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_investmentAmount_dialogInvestment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        app:layout_constraintTop_toBottomOf="@id/text_investmentName_dialogInvestment">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_investmentAmount_dialogInvestment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Principal Amount" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_expiryDate_dialogInvestment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        android:textSize="@dimen/textSize_20"
+        android:minHeight="@dimen/minBtnHeight"
+        app:layout_constraintTop_toBottomOf="@id/text_investmentAmount_dialogInvestment">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_investmentExpiryDate_dialogInvestment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Expiry Date - DD/MM/YYYY"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_investmentRate_dialogInvestment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        app:layout_constraintTop_toBottomOf="@id/text_expiryDate_dialogInvestment">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_investmentRate_dialogInvestment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Interest Rate" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        app:layout_constraintTop_toBottomOf="@id/text_investmentRate_dialogInvestment"
+        android:id="@+id/spinner_investmentType_dialogInvestment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        android:minHeight="@dimen/minBtnHeight"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_investmentExtra_dialogInvestment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        app:layout_constraintTop_toBottomOf="@id/spinner_investmentType_dialogInvestment">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_investmentExtra_dialogInvestment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Extra Info" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txt_subTitle_layoutStockList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Indian Indices"
+        android:textSize="@dimen/textSize_20"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guide_left_layoutStockList" />
+    <TextView
+        android:id="@+id/txt_value_layoutStockList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Value"
+        android:textSize="@dimen/textSize_20"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintTop_toTopOf="@id/txt_subTitle_layoutStockList"
+        app:layout_constraintBottom_toBottomOf="@id/txt_subTitle_layoutStockList"
+        app:layout_constraintStart_toEndOf="@id/guide_stockPrice_layoutStockList"/>
+    <TextView
+        android:textSize="@dimen/textSize_20"
+        android:id="@+id/txt_change_layoutStockList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change (%)"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintTop_toTopOf="@id/txt_subTitle_layoutStockList"
+        app:layout_constraintBottom_toBottomOf="@id/txt_subTitle_layoutStockList"
+        app:layout_constraintStart_toEndOf="@id/guide_stockPriceChange_layoutStockList"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_stocks_layoutStockList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_stock_list"
+        app:layout_constraintTop_toBottomOf="@id/txt_subTitle_layoutStockList" />
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guide_left_layoutStockList"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guide_stockPrice_layoutStockList"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55" />
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guide_stockPriceChange_layoutStockList"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

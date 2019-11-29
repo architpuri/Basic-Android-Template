@@ -13,15 +13,16 @@ import android.widget.TextView;
 import java.util.List;
 
 import in.themoneytree.R;
+import in.themoneytree.data.model.investments.Investment;
 
 public class InvestmentInstrumentsAdapter extends RecyclerView.Adapter<InvestmentInstrumentsAdapter.ViewHolder> {
-    private List<String> instruments;
+    private List<Investment> instruments;
     private Context context;
     private final ClickListener listener;
-    private final String TAG="Investment Instru Adapter";
+    private final String TAG="InvestmentInstrumentAdapter";
 
-    public InvestmentInstrumentsAdapter(List<String> instruments, Context context, ClickListener listener) {
-        this.instruments = instruments;
+    public InvestmentInstrumentsAdapter(List<Investment> investments, Context context, ClickListener listener) {
+        this.instruments = investments;
         this.context = context;
         this.listener = listener;
     }
@@ -36,12 +37,11 @@ public class InvestmentInstrumentsAdapter extends RecyclerView.Adapter<Investmen
 
     @Override
     public void onBindViewHolder(@NonNull InvestmentInstrumentsAdapter.ViewHolder holder, int position) {
-        String name = instruments.get(position);
-        holder.instrumentName.setText(name);
+        holder.instrumentName.setText(instruments.get(position).getInvestmentName());
         holder.instrumentDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.itemEdit(v,position,name);
+                listener.itemEdit(v,position,instruments.get(position).getInvestmentName());
             }
         });
     }

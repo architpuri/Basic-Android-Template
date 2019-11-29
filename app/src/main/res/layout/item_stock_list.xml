@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_10">
+    <TextView
+        android:id="@+id/txt_name_itemStockList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ambuja"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_15"
+        app:layout_constraintStart_toStartOf="@id/guide_left_itemStockList"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/txt_value_itemStockList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50,000"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_15"
+        app:layout_constraintStart_toStartOf="@id/guide_stockPrice_itemStockList"
+        app:layout_constraintTop_toTopOf="@id/txt_name_itemStockList"
+        app:layout_constraintBottom_toBottomOf="@id/txt_name_itemStockList"/>
+    <TextView
+        android:id="@+id/txt_change_itemStockList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5.58"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_15"
+        app:layout_constraintStart_toStartOf="@id/guide_stockPriceChange_itemStockList"
+        app:layout_constraintTop_toTopOf="@id/txt_name_itemStockList"
+        app:layout_constraintBottom_toBottomOf="@id/txt_name_itemStockList"/>
+    <TextView
+        android:id="@+id/txt_changePercent_itemStockList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.7%"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/textSize_15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txt_change_itemStockList"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guide_left_itemStockList"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guide_stockPrice_itemStockList"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guide_stockPriceChange_itemStockList"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

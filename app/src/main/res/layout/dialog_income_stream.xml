@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_dialogIncomeStream"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_margin="@dimen/margin50"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_streamName_dialogIncomeStream"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_streamName_dialogIncomeStream"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stream Name" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_streamAmount_dialogIncomeStream"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        app:layout_constraintTop_toBottomOf="@id/text_streamName_dialogIncomeStream">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_streamAmount_dialogIncomeStream"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stream Amount" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_streamFrequency_dialogIncomeStream"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        app:layout_constraintTop_toBottomOf="@id/text_streamAmount_dialogIncomeStream">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_streamFrequency_dialogIncomeStream"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stream Frequency" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_streamType_dialogIncomeStream"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        app:layout_constraintTop_toBottomOf="@id/text_streamFrequency_dialogIncomeStream">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_streamType_dialogIncomeStream"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stream Type" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_streamInfo_dialogIncomeStream"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        app:layout_constraintTop_toBottomOf="@id/text_streamType_dialogIncomeStream">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_streamInfo_dialogIncomeStream"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stream Info" />
+    </com.google.android.material.textfield.TextInputLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,18 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/txt_portfolioTitle_portfolio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_5"
+                android:text="My Portfolio"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/txt_totalCorpus_portfolio"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -25,32 +37,20 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_25"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/txt_portfolioTitle_portfolio" />
 
             <TextView
                 android:id="@+id/txt_totalCorpusAmount_portfolio"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padd_10"
-                android:text="Rs. 1,00,000"
+                android:drawableLeft="@drawable/ic_rupee_indian"
+                android:text="1,00,000"
                 android:textAllCaps="false"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_25"
-                app:layout_constraintStart_toStartOf="@id/guide_portfolio_left"
-                app:layout_constraintTop_toBottomOf="@id/txt_totalCorpus_portfolio" />
-
-            <TextView
-                android:id="@+id/txt_portfolioAllocation_portfolio"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_10"
-                android:padding="@dimen/padd_5"
-                android:text="Portfolio Allocation"
-                android:textAllCaps="false"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/textSize_25"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_totalCorpusAmount_portfolio" />
+                app:layout_constraintEnd_toEndOf="@id/guide_portfolio_right"
+                app:layout_constraintTop_toTopOf="@id/txt_totalCorpus_portfolio" />
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/chart_allocation_portfolio"
@@ -60,65 +60,231 @@
                 android:background="@drawable/btn_outline_rectangle"
                 app:layout_constraintEnd_toEndOf="@id/guide_portfolio_right"
                 app:layout_constraintStart_toStartOf="@id/guide_portfolio_left"
-                app:layout_constraintTop_toBottomOf="@id/txt_portfolioAllocation_portfolio" />
+                app:layout_constraintTop_toBottomOf="@id/txt_totalCorpus_portfolio" />
 
-            <Button
-                android:id="@+id/btn_completePortfolio_portfolio"
+
+            <ImageView
+                android:id="@+id/line_cashflow_portfolio"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/register_btn_height"
-                android:layout_margin="@dimen/margin_10"
-                android:background="@drawable/btn_outline_rectangle"
-                android:drawableRight="@drawable/ic_arrow_drop_down_black"
-                android:text="Complete Portfolio Details"
-                android:textAllCaps="false"
-                android:textSize="@dimen/textSize_25"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/margin_10"
+                android:src="@color/colorAccent"
                 app:layout_constraintTop_toBottomOf="@id/chart_allocation_portfolio" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_completePortfolio_portfolio"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txt_cashFlow_portfolio"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/btn_completePortfolio_portfolio">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_investmentInstruments_portfolio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin25"
-                    android:orientation="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:listitem="@layout/item_investment_intruments" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <Button
-                android:id="@+id/btn_transactionHistory_portfolio"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/register_btn_height"
-                android:layout_margin="@dimen/margin_10"
-                android:background="@drawable/btn_outline_rectangle"
-                android:drawableRight="@drawable/ic_arrow_drop_down_black"
-                android:text="Transactions"
-                android:textAllCaps="false"
+                android:layout_marginTop="@dimen/margin_5"
+                android:padding="@dimen/margin_5"
+                android:text="My Cash Flow"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/textSize_25"
-                app:layout_constraintTop_toBottomOf="@id/constraint_completePortfolio_portfolio" />
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chart_allocation_portfolio" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_transactions_portfolio"
+            <TableLayout
+                android:id="@+id/table_cashflow_portfolio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1"
+                app:layout_constraintEnd_toEndOf="@id/guide_portfolio_right"
+                app:layout_constraintStart_toStartOf="@id/guide_portfolio_left"
+                app:layout_constraintTop_toBottomOf="@id/txt_cashFlow_portfolio">
+
+                <TableRow>
+
+                    <TextView
+                        android:padding="@dimen/padd_5"
+                        android:text="" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:padding="@dimen/padd_5"
+                        android:text="Monthly"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/textSize_25" />
+
+                    <TextView
+                        android:gravity="right"
+                        android:padding="@dimen/padd_5"
+                        android:text="Yearly"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/textSize_25" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:padding="@dimen/padd_5"
+                        android:text="Inflow"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/textSize_20" />
+
+                    <TextView
+                        android:id="@+id/txt_inflowCashMonthly_portfolio"
+                        android:drawableLeft="@drawable/ic_rupee_indian"
+                        android:gravity="center"
+                        android:padding="@dimen/padd_5"
+                        android:text="5000"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSize_20" />
+
+                    <TextView
+                        android:id="@+id/txt_inflowCashYearly_portfolio"
+                        android:drawableLeft="@drawable/ic_rupee_indian"
+                        android:gravity="right"
+                        android:padding="@dimen/padd_5"
+                        android:text="0"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSize_20" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:padding="@dimen/padd_5"
+                        android:text="Outflow"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/textSize_20" />
+
+                    <TextView
+                        android:id="@+id/txt_outflowCashMonthly_portfolio"
+                        android:drawableLeft="@drawable/ic_rupee_indian"
+                        android:gravity="center"
+                        android:text="5000"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSize_20" />
+
+                    <TextView
+                        android:id="@+id/txt_outflowCashYearly_portfolio"
+                        android:drawableLeft="@drawable/ic_rupee_indian"
+                        android:gravity="right"
+                        android:padding="@dimen/padd_5"
+                        android:text="0"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSize_20" />
+                </TableRow>
+
+
+                <TableRow>
+
+                    <TextView
+                        android:padding="@dimen/padd_5"
+                        android:text="Net"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/textSize_20" />
+
+                    <TextView
+                        android:id="@+id/txt_netCashMonthly_portfolio"
+                        android:drawableLeft="@drawable/ic_rupee_indian"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSize_20" />
+
+                    <TextView
+                        android:id="@+id/txt_netCashYearly_portfolio"
+                        android:drawableLeft="@drawable/ic_rupee_indian"
+                        android:gravity="right"
+                        android:padding="@dimen/padd_5"
+                        android:text="6"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/textSize_20" />
+                </TableRow>
+
+            </TableLayout>
+
+
+            <ImageView
+                android:id="@+id/line_incomeStreams_portfolio"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@color/colorAccent"
+                app:layout_constraintTop_toBottomOf="@id/table_cashflow_portfolio" />
+
+            <TextView
+                android:id="@+id/txt_incomeStream_portfolio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_5"
+                android:text="My Income Streams"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line_incomeStreams_portfolio" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_incomeStreams_portfolio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/btn_transactionHistory_portfolio">
+                android:minHeight="@dimen/minHeight"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/txt_incomeStream_portfolio"
+                tools:listitem="@layout/item_income_sources" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Transaction Id 10849284092804"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/textSize_25"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/line_investments_portfolio"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@color/colorAccent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_incomeStreams_portfolio" />
+
+            <TextView
+                android:id="@+id/txt_investments_portfolio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:padding="@dimen/margin_5"
+                android:text="My Investments"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line_investments_portfolio" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_investmentInstruments_portfolio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/minHeight"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/txt_investments_portfolio"
+                tools:listitem="@layout/item_investment_intruments" />
+
+            <ImageView
+                android:id="@+id/line_transactions_portfolio"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@color/colorAccent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_investmentInstruments_portfolio" />
+
+            <TextView
+                android:id="@+id/txt_transactions_portfolio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:padding="@dimen/margin_5"
+                android:text="My Transactions"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line_transactions_portfolio" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_transactions_portfolio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/minHeight"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/txt_transactions_portfolio"
+                tools:listitem="@layout/item_other_instruments" />
 
 
             <androidx.constraintlayout.widget.Guideline
