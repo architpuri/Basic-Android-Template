@@ -3,6 +3,8 @@ package in.themoneytree.ui.expenditure;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -69,6 +72,7 @@ public class ExpenditureActivity extends BaseActivity {
     private DrawerLayout drawer;
     private List<Expense> expenses;
     private boolean isAddScreenActive = false;
+    private Integer expenseType = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +108,23 @@ public class ExpenditureActivity extends BaseActivity {
                 }
             }
         });
+        setExpenseSpinner();
+    }
 
+    private void setExpenseSpinner() {
+        ArrayAdapter aa = new ArrayAdapter(ExpenditureActivity.this, android.R.layout.simple_spinner_item,getExpenseTypes());
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerExpenseType.setAdapter(aa);
+        spinnerExpenseType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                expenseType = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     private boolean wantToAddExpense() {
@@ -160,7 +180,6 @@ public class ExpenditureActivity extends BaseActivity {
         recyclerExpensesExpenditure.addItemDecoration(new DividerItemDecoration(ExpenditureActivity.this, DividerItemDecoration.HORIZONTAL));
         recyclerExpensesExpenditure.setAdapter(expenditureAdapter);
     }
-
 
     private void getExpenseList() {
         Integer userId = Integer.parseInt(PrefManager.getInstance(getApplicationContext()).getUserId());
@@ -224,5 +243,14 @@ public class ExpenditureActivity extends BaseActivity {
             amount = amount + e.getExpenseAmount();
         }
         txtMonthlyAmount.setText(amount + "");
+    }
+
+    private List<String> getExpenseTypes(){
+        List<String> expenseTypes = new ArrayList<>();
+        expenseTypes.add("Petrol");
+        expenseTypes.add("Bill");
+        expenseTypes.add("Food");
+        expenseTypes.add("Others");
+        return expenseTypes;
     }
 }

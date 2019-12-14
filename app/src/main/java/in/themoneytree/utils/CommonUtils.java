@@ -109,8 +109,10 @@ public class CommonUtils {
 
     public static boolean isNumber(final TextInputLayout textInputLayout, TextInputEditText editText){
         try{
-            Double.parseDouble(editText.getText().toString());
-            return true;
+            if(isEditTextEmpty(textInputLayout,editText)) {
+                Double.parseDouble(editText.getText().toString());
+                return true;
+            }
         }catch (Exception e){
             wrongInputErrorMsg(textInputLayout,"Number Required",editText);
         }

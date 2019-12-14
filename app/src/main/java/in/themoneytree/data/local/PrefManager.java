@@ -2,6 +2,7 @@ package in.themoneytree.data.local;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import androidx.annotation.Nullable;
 
 public class PrefManager {
@@ -20,7 +21,11 @@ public class PrefManager {
     private final String USER_CONTACT_NO = "com.themoneytree.user_contact_no";
     private final String USER_BACKGROUND_IMG_URL = "com.themoneytree.user_background_img_url";
     private final String USER_TYPE = "com.themoneytree.user_type";
-    private final String UNIQUE_IDENTITY="com.themoneytree.unique_identity";
+    private final String UNIQUE_IDENTITY = "com.themoneytree.unique_identity";
+    private final String TAX_AMOUNT = "com.themoneytree.tax_amount";
+    private final String RETIREMENT_CORPUS_AMOUNT = "com.themoneytree.retirement_corpus_amount";
+    private final String RETIREMENT_CORPUS_GOAL = "com.themoneytree.retirement_corpus_goal";
+
     private PrefManager(Context context) {
         sharedPreferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
     }
@@ -51,7 +56,6 @@ public class PrefManager {
     public void setIdentity(String id) {
         if (id != null) sharedPreferences.edit().putString(UNIQUE_IDENTITY, id).apply();
     }
-
 
 
     public void setUserName(String userDisplayName) {
@@ -95,6 +99,7 @@ public class PrefManager {
     public void setUserId(String userId) {
         sharedPreferences.edit().putString(USER_ID, userId).apply();
     }
+
     public String getPortfolioId() {
         return sharedPreferences.getString(PORTFOLIO_ID, "-1");
     }
@@ -141,5 +146,29 @@ public class PrefManager {
 
     public void setUserType(String userType) {
         sharedPreferences.edit().putString(USER_TYPE, userType).apply();
+    }
+
+    public String getTaxAmount() {
+        return sharedPreferences.getString(TAX_AMOUNT, null);
+    }
+
+    public void setTaxAmount(String taxAmount) {
+        sharedPreferences.edit().putString(TAX_AMOUNT, taxAmount).apply();
+    }
+
+    public String getRetirementCorpusAmount() {
+        return sharedPreferences.getString(RETIREMENT_CORPUS_AMOUNT, null);
+    }
+
+    public void setRetirementCorpusAmount(String corpusAmount) {
+        sharedPreferences.edit().putString(RETIREMENT_CORPUS_AMOUNT, corpusAmount).apply();
+    }
+
+    public String getRetirementCorpusGoal() {
+        return sharedPreferences.getString(RETIREMENT_CORPUS_GOAL, null);
+    }
+
+    public void setRetirementCorpusGoal(String corpusGoal) {
+        sharedPreferences.edit().putString(RETIREMENT_CORPUS_GOAL, corpusGoal).apply();
     }
 }

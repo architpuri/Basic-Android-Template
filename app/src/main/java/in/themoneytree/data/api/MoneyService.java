@@ -3,6 +3,7 @@ package in.themoneytree.data.api;
 import in.themoneytree.data.model.GeneralResponse;
 import in.themoneytree.data.model.expense.ExpenseListResponse;
 import in.themoneytree.data.model.portfolio.PortfolioResponse;
+import in.themoneytree.data.model.stock.StockListResponse;
 import in.themoneytree.data.model.user.UserResponse;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -40,8 +41,8 @@ public interface MoneyService {
     @FormUrlEncoded
     @POST("/api/users/{userId}/password/change")
     Call<GeneralResponse> changePassword(@Path("userId") Integer userId,
-                                         @Field("oldPassword") String oldPassword,
-                                         @Field("newPassword") String newPassword);
+                                         @Field("encryptedOldPassword") byte[] encryptedOldPassword,
+                                         @Field("encryptedNewPassword") byte[] encryptedNewPassword);
 
     @FormUrlEncoded
     @POST("/api/users/password/reset")
@@ -88,5 +89,16 @@ public interface MoneyService {
                                           @Field("expenseAmount") Double expenseAmount,
                                           @Field("paymentType") Integer paymentType,
                                           @Field("paymentSourceId") Integer paymentSourceId);
+
+    //Stocks ----------------------------------------------------------------------------------
+    @GET("/api/{userId}/stocks/indices")
+    Call<StockListResponse> getIndices(@Path("userId") Integer userId);
+
+    @GET("/api/{userId}/stocks/recommended/{timeScore}/{riskScore}")
+    Call<StockListResponse> getRecommendedStocks(@Path("userId") Integer userId,
+                                                 @Path("timeScore") int timeScore,
+                                                 @Path("riskScore")int riskScore);
+    @GET("/api/stocks/all")
+    Call<StockListResponse> getAllStocks();
 
 }

@@ -2,18 +2,21 @@ package in.themoneytree.ui.retirement;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.HashMap;
 
@@ -21,6 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.themoneytree.R;
 import in.themoneytree.data.general.ConstantData;
+import in.themoneytree.data.local.PrefManager;
 import in.themoneytree.ui.base.BaseActivity;
 import in.themoneytree.ui.common.UiConstants;
 import in.themoneytree.utils.CommonUtils;
@@ -141,13 +145,24 @@ public class RetirementActivity extends BaseActivity {
     TextInputLayout text84a;
     @BindView(R.id.constraint_corpusCalculate_retirement)
     ConstraintLayout constraintCorpus;
+    @BindView(R.id.radioBtn1_q5_retirement)
+    RadioButton radioBtn1Q5Retirement;/*
+    @BindView(R.id.radioGroup_q5_corpus_retirement)
+    RadioGroup radioGroupQ5CorpusRetirement;*/
+    @BindView(R.id.progress_corpusAmount)
+    ProgressBar progressCorpusAmount;
+    @BindView(R.id.txt_progress_retirement)
+    TextView txtProgress;
     @BindView(R.id.txt_corpusAmount_retirement)
     TextView txtCorpusAmount;
+    @BindView(R.id.txt_corpusGoal_retirement)
+    TextView txtCorpusGoal;
     private DrawerLayout drawer;
     private static final String TAG = "TAX ACTIVITY";
     private Context context = RetirementActivity.this;
     private boolean isCalculationActive = false;
-    private long amount = -1;
+    private Double goal = 0.0;
+    private Double amount = 0.0;
 
     @Override
     public boolean getBottomNavigation() {
@@ -168,17 +183,28 @@ public class RetirementActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
-        if (amount != -1) {
+        try {
+            amount = Double.parseDouble(PrefManager.getInstance(getApplicationContext()).getRetirementCorpusAmount());
+            goal = Double.parseDouble(PrefManager.getInstance(getApplicationContext()).getRetirementCorpusGoal());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        if (goal == 0.0) {
+            CommonUtils.showLongToast(context, "Calculate Corpus First");
+        }
+        if (goal != 0.0) {
             btnCalculateCorpusRetirement.setText("Recalculate Retirement Corpus Amount");
+            setUpProgress(amount, goal);
         }
         btnCalculateCorpusRetirement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isCalculationActive) {
-                    amount = calculateCorpusAmount();
-                    if (amount != -1) {
+                    goal = calculateCorpusAmount();
+                    if (goal != 0.0) {
                         txtCorpusAmount.setVisibility(View.VISIBLE);
-                        txtCorpusAmount.setText("Corpus Amount is - " + amount);
+                        txtCorpusAmount.setText("Corpus Amount is - " + goal);
+                        PrefManager.getInstance(getApplicationContext()).setRetirementCorpusGoal(goal + "");
                     }
                     isCalculationActive = false;
                     constraintCorpus.setVisibility(View.GONE);
@@ -197,17 +223,17 @@ public class RetirementActivity extends BaseActivity {
         });
     }
 
-    private long calculateCorpusAmount() {
+    private Double calculateCorpusAmount() {
         try {
             int yearsToLiveAfterRetirement = 20;
             // Method used from The Times of India , Chandigarh July 6,2019
             // Pg 11 Retirement Planning
-            long retirementCorpus = 0;
+            Double retirementCorpus = 0.0;
             int yearsLeft = (Integer.parseInt(edt12.getText().toString()) - Integer.parseInt(edtQ1.getText().toString()));
             long annualExpenses = (Integer.parseInt(edt22.getText().toString()) + Integer.parseInt(edtQ2.getText().toString()) * 12);
             int inflation = Integer.parseInt(edtQ3.getText().toString());
-            float changeInSpending = 0.0f;
-            HashMap<Integer, Float> hm = ConstantData.getSpendingChange(yearsToLiveAfterRetirement);
+            Double changeInSpending = 0.0;
+            HashMap<Integer, Double> hm = ConstantData.getSpendingChange(yearsToLiveAfterRetirement);
             for (int i = 0; i < radioGroupQ4a.getChildCount(); i++) {
                 RadioButton child = (RadioButton) radioGroupQ4a.getChildAt(i);
                 if (child.isChecked()) {
@@ -215,10 +241,10 @@ public class RetirementActivity extends BaseActivity {
                     break;
                 }
             }
-            if (changeInSpending == 0.0f) {
+            if (changeInSpending == 0.0) {
                 CommonUtils.showToast(context, "Please Select Option for Question 4");
             }
-            retirementCorpus = (long) (inflation * annualExpenses * changeInSpending);
+            retirementCorpus = (Double) (inflation * annualExpenses * changeInSpending);
             Log.d(TAG, inflation + " " + annualExpenses + " " + changeInSpending);
             //repaying any loans
             for (int i = 0; i < radioGroupQ5.getChildCount(); i++) {
@@ -255,14 +281,23 @@ public class RetirementActivity extends BaseActivity {
             return retirementCorpus;
         } catch (NullPointerException e) {
             CommonUtils.showToast(context, "Please fill All The Fields Correctly");
-            return -1;
+            return 0.0;
         } catch (NumberFormatException f) {
             CommonUtils.showToast(context, "Please fill All The Fields Correctly");
-            return -1;
+            return 0.0;
         } catch (Exception e) {
             CommonUtils.exceptionHandling(TAG, e);
             CommonUtils.showToast(context, "Please fill All The Fields Correctly");
-            return -1;
+            return 0.0;
         }
+    }
+
+    private void setUpProgress(Double corpusAmount, Double corpusGoal) {
+        Double d = corpusAmount / corpusGoal;
+        int progressValue = d.intValue();
+        progressCorpusAmount.setProgress(progressValue + 1);
+        txtProgress.setText("" + progressValue + "%");
+        txtCorpusAmount.setText("Corpus Amount Till Now - "+corpusAmount);
+        txtCorpusGoal.setText("Corpus Goal - "+corpusGoal);
     }
 }

@@ -48,20 +48,6 @@
                 android:textSize="@dimen/textSize_20"
                 app:layout_constraintTop_toBottomOf="@id/include_layout" />
 
-            <TextView
-                android:id="@+id/txt_corpusAmount_retirement"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_10"
-                android:background="@drawable/btn_outline_rectangle"
-                android:backgroundTint="@color/colorWhite"
-                android:gravity="center"
-                android:text="Corpus Amount is -"
-                android:textAllCaps="false"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/textSize_25"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/btn_calculateCorpus_retirement" />
 
             <ProgressBar
                 android:id="@+id/progress_corpusAmount"
@@ -74,9 +60,10 @@
                 android:progressDrawable="@drawable/progress_circle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_corpusAmount_retirement" />
+                app:layout_constraintTop_toBottomOf="@id/btn_calculateCorpus_retirement" />
 
             <TextView
+                android:id="@+id/txt_progress_retirement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorWhite"
@@ -89,6 +76,32 @@
                 app:layout_constraintEnd_toEndOf="@id/progress_corpusAmount"
                 app:layout_constraintStart_toStartOf="@id/progress_corpusAmount"
                 app:layout_constraintTop_toTopOf="@id/progress_corpusAmount" />
+
+            <TextView
+                android:id="@+id/txt_corpusAmount_retirement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorWhite"
+                android:elevation="@dimen/elevation_5"
+                android:padding="@dimen/padd_2"
+                android:text="Add Investments to Get Progress"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progress_corpusAmount" />
+
+            <TextView
+                android:id="@+id/txt_corpusGoal_retirement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorWhite"
+                android:elevation="@dimen/elevation_5"
+                android:padding="@dimen/padd_2"
+                android:text="Calculate Retirement Corpus to Establish Goal"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_corpusAmount_retirement" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

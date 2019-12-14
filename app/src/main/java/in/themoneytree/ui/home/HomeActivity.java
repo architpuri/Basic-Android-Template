@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -31,12 +33,15 @@ import in.themoneytree.data.api.MoneyService;
 import in.themoneytree.data.local.PrefManager;
 import in.themoneytree.data.model.portfolio.Portfolio;
 import in.themoneytree.data.model.portfolio.PortfolioResponse;
-import in.themoneytree.data.model.stock.Stock;
+import in.themoneytree.data.model.stock.StockListResponse;
+import in.themoneytree.data.model.stock.Stocks;
 import in.themoneytree.ui.base.BaseActivity;
 import in.themoneytree.ui.common.UiConstants;
 import in.themoneytree.ui.home.indices.IndicesAdapter;
 import in.themoneytree.ui.home.stocktape.StockScrollAdapter;
 import in.themoneytree.ui.home.stocktape.StockScrollListener;
+import in.themoneytree.ui.portfolio.PortfolioActivity;
+import in.themoneytree.ui.retirement.RetirementActivity;
 import in.themoneytree.utils.CommonUtils;
 import in.themoneytree.utils.chart.HorizontalBarChartActivity;
 import retrofit2.Call;
@@ -49,8 +54,8 @@ public class HomeActivity extends BaseActivity {
     FloatingActionButton fabDrawerOpen;
     @BindView(R.id.recycler_stockTape_homeActivity)
     RecyclerView recyclerStockTape;
-
-    List<Stock> stocks = new ArrayList<>();
+    List<Stocks> stocks = new ArrayList<>();
+    List<Stocks> indices = new ArrayList<>();
     @BindView(R.id.recycler_stocks_layoutStockList)
     RecyclerView recyclerIndices;
     @BindView(R.id.chart_allocation_homeActivity)
@@ -76,7 +81,9 @@ public class HomeActivity extends BaseActivity {
         } else {
             getPortfolio();
         }
-        stocks = getStockListForTape();
+        if(fetchStocks()){
+            System.out.println(stocks.toString());
+        }
         fabDrawerOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,14 +91,17 @@ public class HomeActivity extends BaseActivity {
                 drawer.openDrawer(GravityCompat.START);
             }
         });
-        setUpScreen();
-        setRecyclerView();
+    }
+
+    private void setStocksBasedStuff(){
         setUpTape();
+        fetchIndices();
     }
 
     private void setUpScreen() {
         setUpIndicesRecycler();
-        setUpAllocationChart();
+        setUpPortfolio();
+        setUpCorpus();
     }
 
     private ArrayList<Float> getPortfolioAllocation() {
@@ -133,7 +143,7 @@ public class HomeActivity extends BaseActivity {
 
     private void setUpIndicesRecycler() {
         recyclerIndices.setVisibility(View.VISIBLE);
-        IndicesAdapter indicesAdapter = new IndicesAdapter(getApplicationContext(), getStockListForTape());
+        IndicesAdapter indicesAdapter = new IndicesAdapter(getApplicationContext(), indices);
         indicesAdapter.notifyDataSetChanged();
         DividerItemDecoration itemDecorator = new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.HORIZONTAL);
         itemDecorator.setDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.recyler_divider));
@@ -155,35 +165,6 @@ public class HomeActivity extends BaseActivity {
     @Override
     public int getLayout() {
         return R.layout.activity_home;
-    }
-
-    void setRecyclerView() {
-        /*recyclerIndices.setVisibility(View.VISIBLE);
-        stockAdapter = new StockListAdapter(getApplicationContext(), getStockList(), new StockClickListener() {
-            @Override
-            public void stockDetails(View v, int position) {
-                CommonUtils.showToast(getApplicationContext(), "Stock Details");
-            }
-        });
-        stockAdapter.notifyDataSetChanged();
-        Log.d(TAG, "IDhr bhi aa lia 2");
-        if (stockAdapter == null) {
-            Log.d(TAG, "Null aa raa");
-        }
-        DividerItemDecoration itemDecorator = new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.HORIZONTAL);
-        itemDecorator.setDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.recyler_divider));
-        recyclerStockList.addItemDecoration(itemDecorator);
-        recyclerStockList.addItemDecoration(new DividerItemDecoration(StocksActivity.this, DividerItemDecoration.HORIZONTAL));
-        recyclerStockList.setAdapter(stockAdapter);*/
-    }
-
-    private List<String> getStockList() {
-        List<String> stocks = new ArrayList<>();
-        stocks.add("Hindustan Unilever Limited");
-        stocks.add("Tata Steel");
-        stocks.add("Infosys");
-        stocks.add("Ambuja Cement");
-        return stocks;
     }
 
     private void getPortfolio() {
@@ -212,19 +193,6 @@ public class HomeActivity extends BaseActivity {
         });
     }
 
-    private List<Stock> getStockListForTape() {
-        ArrayList<Stock> st = new ArrayList<>();
-        st.add(new Stock(1, "Nifty 50", 11500.0, 50.0, 1.2));
-        st.add(new Stock(1, "SENSEX 30", 37000.0, -550.0, -2.2));
-        st.add(new Stock(1, "Ambuja", 1700.0, 50.0, 5.2));
-        st.add(new Stock(1, "Zee TV", 254.0, 50.0, 3.2));
-        st.add(new Stock(1, "IRCTC", 910.0, 50.0, 0.2));
-        st.add(new Stock(1, "Infy", 647.80, -78.9, -0.89));
-        st.add(new Stock(1, "MRF", 31456.5, -298.5, -0.87));
-        st.add(new Stock(1, "M&M", 887.30, 102.5, 1.2));
-        return st;
-    }
-
     public void autoScrollAnother() {
         scrollCount = 0;
         final Handler handler = new Handler();
@@ -233,7 +201,7 @@ public class HomeActivity extends BaseActivity {
             public void run() {
                 recyclerStockTape.smoothScrollToPosition((scrollCount++));
                 if (scrollCount == stockScrollAdapter.getItemCount() - 4) {
-                    stocks.addAll(stocks);
+                    //stocks.addAll(stocks);
                     stockScrollAdapter.notifyDataSetChanged();
                 }
                 handler.postDelayed(this, 500);
@@ -246,33 +214,157 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void setUpTape() {
-        stockScrollAdapter = new StockScrollAdapter(HomeActivity.this, stocks, new StockScrollListener() {
-        });
-        recyclerStockTape.setAdapter(stockScrollAdapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(HomeActivity.this) {
+        if(stocks!=null && stocks.size()>0) {
+            stockScrollAdapter = new StockScrollAdapter(HomeActivity.this, stocks, new StockScrollListener() {
+            });
+            recyclerStockTape.setAdapter(stockScrollAdapter);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(HomeActivity.this) {
 
-            @Override
-            public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
-                LinearSmoothScroller smoothScroller = new LinearSmoothScroller(HomeActivity.this) {
-                    private static final float SPEED = 1500f;// Change this value (default=25f)
+                @Override
+                public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
+                    LinearSmoothScroller smoothScroller = new LinearSmoothScroller(HomeActivity.this) {
+                        private static final float SPEED = 1500f;// Change this value (default=25f)
 
-                    @Override
-                    protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
-                        return SPEED / displayMetrics.densityDpi;
-                    }
-                };
-                smoothScroller.setTargetPosition(position);
-                startSmoothScroll(smoothScroller);
-            }
-        };
-        autoScrollAnother();
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerStockTape.setLayoutManager(layoutManager);
-        recyclerStockTape.setHasFixedSize(true);
-        recyclerStockTape.setItemViewCacheSize(1000);
-        recyclerStockTape.setDrawingCacheEnabled(true);
-        recyclerStockTape.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        recyclerStockTape.setAdapter(stockScrollAdapter);
+                        @Override
+                        protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
+                            return SPEED / displayMetrics.densityDpi;
+                        }
+                    };
+                    smoothScroller.setTargetPosition(position);
+                    startSmoothScroll(smoothScroller);
+                }
+            };
+            autoScrollAnother();
+            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            recyclerStockTape.setLayoutManager(layoutManager);
+            recyclerStockTape.setHasFixedSize(true);
+            recyclerStockTape.setItemViewCacheSize(1000);
+            recyclerStockTape.setDrawingCacheEnabled(true);
+            recyclerStockTape.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+            recyclerStockTape.setAdapter(stockScrollAdapter);
+        }
     }
 
+    private boolean fetchStocks() {
+        Integer userId = Integer.parseInt(PrefManager.getInstance(getApplicationContext()).getUserId());
+        MoneyService moneyService = ApiClient.getInstance();
+        Call<StockListResponse> stocksRequest = moneyService.getAllStocks();
+        stocksRequest.enqueue(new Callback<StockListResponse>() {
+            @Override
+            public void onResponse(Call<StockListResponse> call, Response<StockListResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getGeneralResponse().getStatusCode() == ApiConstants.SUCCESS) {
+                        List<Stocks> stockList = response.body().getStocks();
+                        Log.d(TAG,response.body().toString());
+                        if(stockList!=null && stockList.size()>0){
+                            stocks = stockList;
+                            setStocksBasedStuff();
+                            Log.d(TAG,"Here1");
+                        }else{
+                            if(stockList==null){
+                                Log.d(TAG,"Null it is");
+                            }
+                            Log.d(TAG,"Stock List");
+                        }
+                    }else{
+                        Log.d(TAG,"General Response");
+                    }
+                }else{
+                    Log.d(TAG,"Not Success");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StockListResponse> call, Throwable t) {
+                CommonUtils.showToast(HomeActivity.this, "Failure Check Internet");
+            }
+        });
+        /*
+            if(stocks==null || stocks.size()==0){
+                Log.d(TAG,"Here2");
+                stocks = getStockListForTape();
+                setStocksBasedStuff();
+                return false;
+            }
+        */
+        return true;
+    }
+
+    private boolean fetchIndices(){
+        Integer userId = Integer.parseInt(PrefManager.getInstance(getApplicationContext()).getUserId());
+        MoneyService moneyService = ApiClient.getInstance();
+        Call<StockListResponse> stocksRequest = moneyService.getIndices(userId);
+        stocksRequest.enqueue(new Callback<StockListResponse>() {
+            @Override
+            public void onResponse(Call<StockListResponse> call, Response<StockListResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getGeneralResponse().getStatusCode() == ApiConstants.SUCCESS) {
+                        List<Stocks> stockList = response.body().getStocks();
+                        if(stockList!=null && stockList.size()>0){
+                            indices = stockList;
+                            setUpScreen();
+                        }else{
+                            if(stockList==null){
+                                Log.d(TAG,"Null it is");
+                            }
+                            Log.d(TAG,"Stock List");
+                        }
+                    }else{
+                        Log.d(TAG,"General Response");
+                    }
+                }else{
+                    Log.d(TAG,"Not Success");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StockListResponse> call, Throwable t) {
+                CommonUtils.showToast(HomeActivity.this, "Failure Check Internet");
+            }
+        });
+        return true;
+    }
+
+    private void setUpCorpus(){
+        TextView txtRetirementTitle = findViewById(R.id.txt_corpusTitle_homeActivity);
+        txtRetirementTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, RetirementActivity.class);
+                startActivity(intent);
+            }
+        });
+        TextView txtRetirementAmount = findViewById(R.id.txt_currentCorpus_homeActivity);
+        TextView txtRetirementGoal = findViewById(R.id.txt_goalCorpus_homeActivity);
+        TextView txtProgress = findViewById(R.id.txt_progress);
+        ProgressBar progressBar = findViewById(R.id.progress);
+        Double goal=0.0,amount=0.0;
+        try {
+            amount = Double.parseDouble(PrefManager.getInstance(getApplicationContext()).getRetirementCorpusAmount());
+            goal = Double.parseDouble(PrefManager.getInstance(getApplicationContext()).getRetirementCorpusGoal());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        int progressValue =0;
+        if(goal!=0.0) {
+            Double d = amount / goal;
+            progressValue = d.intValue();
+        }
+        progressBar.setProgress(progressValue + 1);
+        txtProgress.setText("" + progressValue + "%");
+        txtRetirementAmount.setText("Current - "+amount);
+        txtRetirementGoal.setText("Goal - "+goal);
+    }
+
+    private void setUpPortfolio(){
+        TextView txtPortfolioTitle =findViewById(R.id.txt_portfolioTitle_homeActivity);
+        txtPortfolioTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, PortfolioActivity.class);
+                startActivity(intent);
+            }
+        });
+        setUpAllocationChart();
+    }
 }

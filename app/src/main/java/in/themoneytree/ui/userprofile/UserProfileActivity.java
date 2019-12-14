@@ -29,6 +29,7 @@ import in.themoneytree.data.local.PrefManager;
 import in.themoneytree.data.model.GeneralResponse;
 import in.themoneytree.data.model.user.User;
 import in.themoneytree.data.model.user.UserResponse;
+import in.themoneytree.data.security.Encrypter;
 import in.themoneytree.ui.base.BaseActivity;
 import in.themoneytree.ui.common.UiConstants;
 import in.themoneytree.ui.home.HomeActivity;
@@ -319,7 +320,8 @@ public class UserProfileActivity extends BaseActivity {
         btnDisableEnable();
         Integer userId = Integer.parseInt(PrefManager.getInstance(getApplicationContext()).getUserId());
         MoneyService moneyService = ApiClient.getInstance();
-        Call<GeneralResponse> passwordChangeRequest = moneyService.changePassword(userId, oldPassword, newPassword);
+        Call<GeneralResponse> passwordChangeRequest = moneyService.changePassword(userId,
+                Encrypter.encryption(oldPassword),Encrypter.encryption(newPassword));
         passwordChangeRequest.enqueue(new Callback<GeneralResponse>() {
             @Override
             public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
@@ -331,7 +333,7 @@ public class UserProfileActivity extends BaseActivity {
                         startActivity(new Intent(UserProfileActivity.this, HomeActivity.class));
                     }else{
                         btnDisableEnable();
-                        CommonUtils.showToast(getApplicationContext(),"Message"+response.body().getMessage());
+                        CommonUtils.showToast(getApplicationContext(),"Message - "+response.body().getMessage());
                         pBarChangePass.setVisibility(View.GONE);
                     }
                 }

@@ -8,26 +8,89 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/txt_title_stocks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_5"
                 android:text="Stocks"
-                android:textSize="@dimen/textSize_25"
                 android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_margin="@dimen/margin_5"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_stockList_stocksActivity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_stock_recommendation"
-            app:layout_constraintTop_toBottomOf="@id/txt_title_stocks"/>
+                android:textSize="@dimen/textSize_25"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_timeScore_stocks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin25"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="Time Score"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_title_stocks" />
+
+            <TextView
+                android:id="@+id/txt_valueTimeScore_stocks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin25"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="5"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintStart_toEndOf="@id/txt_timeScore_stocks"
+                app:layout_constraintTop_toBottomOf="@id/txt_title_stocks" />
+
+            <TextView
+                android:id="@+id/txt_riskScore_stocks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin25"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="Risk Score"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_timeScore_stocks" />
+
+            <TextView
+                android:id="@+id/txt_valueRiskScore_stocks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin25"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="2"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintStart_toEndOf="@id/txt_riskScore_stocks"
+                app:layout_constraintTop_toBottomOf="@id/txt_timeScore_stocks" />
+
+            <TextView
+                android:id="@+id/txt_investorType_stocks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin25"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="Class - 1 Aggressive Investor"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_riskScore_stocks" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_stockList_stocksActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/txt_investorType_stocks"
+                tools:listitem="@layout/item_stock_recommendation" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

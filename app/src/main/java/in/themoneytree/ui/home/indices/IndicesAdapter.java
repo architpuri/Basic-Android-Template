@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import in.themoneytree.R;
-import in.themoneytree.data.model.stock.Stock;
+import in.themoneytree.data.model.stock.Stocks;
 
 /**
  * Created By  Archit
@@ -22,10 +22,10 @@ import in.themoneytree.data.model.stock.Stock;
  * for TheMoneyTree
  */
 public class IndicesAdapter extends RecyclerView.Adapter<IndicesAdapter.ViewHolder> {
-    private List<Stock> stocks;
+    private List<Stocks> stocks;
     private Context context;
 
-    public IndicesAdapter(Context context, List<Stock> stocks) {
+    public IndicesAdapter(Context context, List<Stocks> stocks) {
         this.stocks = stocks;
         this.context = context;
     }
@@ -40,7 +40,7 @@ public class IndicesAdapter extends RecyclerView.Adapter<IndicesAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull IndicesAdapter.ViewHolder holder, int position) {
-        Stock stock = stocks.get(position);
+        Stocks stock = stocks.get(position);
         holder.name.setText(stock.getStockName());
         holder.change.setText(stock.getPriceChange() + "");
         holder.value.setText(stock.getStockPrice() + "");

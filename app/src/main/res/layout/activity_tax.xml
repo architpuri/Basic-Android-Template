@@ -7,7 +7,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,25 +28,29 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btn_calculateTax_tax"
+                android:id="@+id/txt_calculateTax_tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_10"
-                android:layout_marginVertical="@dimen/margin25"
-                android:background="@drawable/btn_outline_rectangle"
+                android:layout_marginVertical="@dimen/margin_10"
                 android:backgroundTint="@color/colorPrimary"
                 android:drawableRight="@drawable/ic_arrow_drop_up_black"
-                android:text="Calculate Tax"
-                android:textSize="@dimen/textSize_25"
+                android:drawableTint="@color/colorWhite"
+                android:text="Click Here To Calculate Tax"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/btn_outline_rectangle"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_title_tax" />
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_taxCalculate_tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@id/btn_calculateTax_tax">
+                app:layout_constraintTop_toBottomOf="@id/txt_calculateTax_tax">
 
                 <TextView
                     android:id="@+id/txt_financialYear_tax"
@@ -243,26 +249,65 @@
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textSize_20" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_calculateTax_tax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_10"
+                    android:layout_marginVertical="@dimen/margin25"
+                    android:background="@drawable/btn_outline_rectangle"
+                    android:text="Calculate Tax"
+                    android:textSize="@dimen/textSize_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_rentalIncome_tax" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txt_taxAmount_tax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TAX you will pay this financial year will be"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_15"
+                android:layout_marginTop="@dimen/margin25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraint_taxCalculate_tax" />
+
+            <TextView
+                android:id="@+id/txt_valueTaxAmount_tax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_rupee_indian"
+                android:text="0.0"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintBottom_toBottomOf="@id/txt_taxAmount_tax"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_taxAmount_tax" />
 
             <Button
                 android:id="@+id/btn_taxSlabs_tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_10"
-                android:layout_marginVertical="@dimen/margin25"
+                android:layout_marginVertical="@dimen/margin_10"
+                android:textColor="@color/colorWhite"
                 android:background="@drawable/btn_outline_rectangle"
                 android:backgroundTint="@color/colorPrimary"
                 android:drawableRight="@drawable/ic_arrow_drop_up_black"
                 android:text="Current Tax Slabs"
-                android:textSize="@dimen/textSize_25"
-                app:layout_constraintTop_toBottomOf="@id/constraint_taxCalculate_tax" />
+                android:textAllCaps="false"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintTop_toBottomOf="@id/txt_taxAmount_tax" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_taxSlabs_tax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/btn_taxSlabs_tax">
+
                 <LinearLayout
                     android:id="@+id/linear_taxSlabs_tax"
                     android:layout_width="match_parent"
@@ -276,6 +321,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/txt_taxSaved_tax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -284,11 +330,12 @@
                 android:padding="@dimen/padd_10"
                 android:text="Total Tax Saved TAX"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/textSize_25"
+                android:textSize="@dimen/textSize_20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/constraint_taxSlabs_tax" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/txt_taxSavedAmount_tax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -307,12 +354,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_10"
-                android:layout_marginVertical="@dimen/margin25"
+                android:layout_marginVertical="@dimen/margin_10"
+                android:textColor="@color/colorWhite"
                 android:background="@drawable/btn_outline_rectangle"
                 android:backgroundTint="@color/colorPrimary"
                 android:drawableRight="@drawable/ic_arrow_drop_up_black"
-                android:text="Save Tax"
-                android:textSize="@dimen/textSize_25"
+                android:text="Recommendations To Save Tax"
+                android:textAllCaps="false"
+                android:textSize="@dimen/textSize_20"
                 app:layout_constraintTop_toBottomOf="@id/txt_taxSaved_tax" />
 
             <androidx.constraintlayout.widget.ConstraintLayout

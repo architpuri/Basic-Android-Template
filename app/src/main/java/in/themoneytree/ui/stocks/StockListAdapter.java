@@ -13,13 +13,14 @@ import android.widget.TextView;
 import java.util.List;
 
 import in.themoneytree.R;
+import in.themoneytree.data.model.stock.Stocks;
 
 public class StockListAdapter extends RecyclerView.Adapter<StockListAdapter.ViewHolder>  {
-    private List<String> stocks;
+    private List<Stocks> stocks;
     private Context context;
     private final StockClickListener listener;
 
-    public StockListAdapter(Context context, List<String> stocks, StockClickListener listener) {
+    public StockListAdapter(Context context, List<Stocks> stocks, StockClickListener listener) {
         this.stocks = stocks;
         this.listener = listener;
         this.context = context;
@@ -35,8 +36,10 @@ public class StockListAdapter extends RecyclerView.Adapter<StockListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull StockListAdapter.ViewHolder holder, int position) {
-        String stockName=stocks.get(position);
-        holder.stockName.setText("Stock - "+stockName);
+        Stocks stock=stocks.get(position);
+        holder.stockName.setText(stock.getStockName());
+        holder.stockCMP.setText(stock.getStockPrice()+"");
+
     }
 
     @Override

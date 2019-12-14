@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import in.themoneytree.R;
-import in.themoneytree.data.model.stock.Stock;
+import in.themoneytree.data.model.stock.Stocks;
 
 /**
  * Created By  Archit
@@ -25,11 +25,11 @@ import in.themoneytree.data.model.stock.Stock;
  * for TheMoneyTree
  */
 public class StockScrollAdapter extends RecyclerView.Adapter<StockScrollAdapter.ViewHolder> {
-    private List<Stock> stocks;
+    private List<Stocks> stocks;
     private Context context;
     private final StockScrollListener listener;
 
-    public StockScrollAdapter(Context context, List<Stock> stocks, StockScrollListener listener) {
+    public StockScrollAdapter(Context context, List<Stocks> stocks, StockScrollListener listener) {
         this.stocks = stocks;
         this.listener = listener;
         this.context = context;
@@ -45,7 +45,7 @@ public class StockScrollAdapter extends RecyclerView.Adapter<StockScrollAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull StockScrollAdapter.ViewHolder holder, int position) {
-        Stock stock = stocks.get(position);
+        Stocks stock = stocks.get(position);
         holder.stockName.setText(stock.getStockName());
         holder.stockChange.setText(stock.getPriceChange() + "");
         holder.stockCMP.setText(stock.getStockPrice() + "");

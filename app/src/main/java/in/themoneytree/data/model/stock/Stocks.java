@@ -1,20 +1,40 @@
 package in.themoneytree.data.model.stock;
 
-public class Stock {
+public class Stocks {
     private Integer stockId;
     private String stockName;
     private Double stockPrice;
     private Double priceChange;
     private Double changePercent;
-    public Stock() {
+    private String stockImgUrl;
+
+    public Stocks() {
     }
 
-    public Stock(Integer stockId, String stockName, Double stockPrice, Double priceChange, Double changePercent) {
+    public Stocks (Integer stockId,String stockName,Double stockPrice,String stockImgUrl){
+        this.stockId = stockId;
+        this.stockName = stockName;
+        this.stockPrice = stockPrice;
+        this.priceChange = 5.0;
+        this.changePercent = 0.02;
+        this.stockImgUrl = stockImgUrl;
+    }
+
+    /*public Stock(Integer stockId, String stockName, Double stockPrice, Double priceChange, Double changePercent, String stockImgUrl) {
         this.stockId = stockId;
         this.stockName = stockName;
         this.stockPrice = stockPrice;
         this.priceChange = priceChange;
         this.changePercent = changePercent;
+        this.stockImgUrl = stockImgUrl;
+    }*/
+
+    public String getStockImgUrl() {
+        return stockImgUrl;
+    }
+
+    public void setStockImgUrl(String stockImgUrl) {
+        this.stockImgUrl = stockImgUrl;
     }
 
     public Integer getStockId() {

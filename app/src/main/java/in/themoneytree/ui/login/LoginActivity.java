@@ -157,6 +157,9 @@ public class LoginActivity extends AppCompatActivity {
         PrefManager.getInstance(getApplicationContext()).setUserEmail(email);
         PrefManager.getInstance(getApplicationContext()).setUserPassword(password);
         PrefManager.getInstance(getApplicationContext()).setFirstTimeUser(true);
+        PrefManager.getInstance(getApplicationContext()).setTaxAmount("0.0");
+        PrefManager.getInstance(getApplicationContext()).setRetirementCorpusAmount("0.0");
+        PrefManager.getInstance(getApplicationContext()).setRetirementCorpusGoal("0.0");
     }
 
     private void setUserDetails(Context context) {

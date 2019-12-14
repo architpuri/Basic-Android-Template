@@ -10,21 +10,21 @@ import in.themoneytree.data.model.GeneralResponse;
 
 public class StockResponse {
     private GeneralResponse generalResponse;
-    private Stock stock;
+    private Stocks stock;
 
     public StockResponse() {
     }
 
-    public StockResponse(Stock stock, int statusCode, String message) {
+    public StockResponse(Stocks stock, int statusCode, String message) {
         this.generalResponse = new GeneralResponse(statusCode, message);
         this.stock = stock;
     }
 
-    public Stock getstock() {
+    public Stocks getstock() {
         return stock;
     }
 
-    public void setstock(Stock stock) {
+    public void setstock(Stocks stock) {
         this.stock = stock;
     }
 
