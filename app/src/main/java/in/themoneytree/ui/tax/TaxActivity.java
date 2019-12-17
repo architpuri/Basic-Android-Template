@@ -121,7 +121,7 @@ public class TaxActivity extends BaseActivity {
                 Double taxValue = calculateTax();
                 if (taxValue != -1) {
                     layoutShowHide("CALCULATE TAX");
-                    txtValueTax.setText(taxValue + "");
+                    txtValueTax.setText(taxValue.intValue() + "");
                 }
             }
         });
@@ -134,7 +134,7 @@ public class TaxActivity extends BaseActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
-        txtValueTax.setText(""+taxAmount);
+        txtValueTax.setText(""+taxAmount.intValue());
     }
 
     private void layoutShowHide(String type) {
@@ -193,7 +193,11 @@ public class TaxActivity extends BaseActivity {
 
     private Double calculateTax() {
         int valueOne = getQuestionOne();
-        int valueTwo = getQuestionTwo();
+        double valueTwo = getQuestionTwo();
+        if(valueTwo==-1.0 || valueOne == -1){
+            CommonUtils.showLongToast(getApplicationContext(),"Please Fill All Fields");
+            return -1.0;
+        }
         Double taxableIncome = 0.0;
         TextInputEditText editText = findViewById(R.id.edt_taxableSalary_tax);
         TextInputLayout layout = findViewById(R.id.text_taxableSalary_tax);
@@ -233,7 +237,7 @@ public class TaxActivity extends BaseActivity {
         if (taxableIncome < 500000) {
             return 0.0;
         }
-        return finalTaxValue(taxableIncome);
+        return finalTaxValue(taxableIncome)*valueTwo;
     }
 
     private Double finalTaxValue(Double taxableIncome) {
@@ -277,17 +281,17 @@ public class TaxActivity extends BaseActivity {
         }
     }
 
-    private int getQuestionTwo() {
+    private double getQuestionTwo() {
         int selectedId = rgAge.getCheckedRadioButtonId();
         switch (selectedId) {
             case R.id.radio1_age_tax:
-                return 1;
+                return 1.0;
             case R.id.radio2_age_tax:
-                return 2;
+                return 0.85;
             case R.id.radio3_age_tax:
-                return 3;
+                return 0.75;
             default:
-                return -1;
+                return -1.0;
         }
     }
 

@@ -94,11 +94,15 @@ public class RegistrationActivity extends AppCompatActivity {
             mobile = edtMobile.getText().toString();
         } catch (NullPointerException e) {
             mobile = "NA";
+            progressSubmit.setVisibility(View.GONE);
         } catch (Exception e) {
             CommonUtils.showToast(getApplicationContext(), "Check Mobile No");
+            progressSubmit.setVisibility(View.GONE);
         }
+
         if (mobile.length() != 10) {
             CommonUtils.showToast(getApplicationContext(), "Check Mobile No");
+            progressSubmit.setVisibility(View.GONE);
         }else {
             MoneyService colioService = ApiClient.getInstance();
             Call<GeneralResponse> sendUserDetailsRequest = colioService.sendUserDetails(

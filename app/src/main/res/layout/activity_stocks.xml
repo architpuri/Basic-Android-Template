@@ -83,14 +83,36 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_riskScore_stocks" />
 
+            <TextView
+                android:id="@+id/txt_recommendationTitle_stocks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin25"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="Recommended Stocks According to your profile "
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSize_20"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_investorType_stocks" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_stockList_stocksActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/txt_investorType_stocks"
+                app:layout_constraintTop_toBottomOf="@id/txt_recommendationTitle_stocks"
                 tools:listitem="@layout/item_stock_recommendation" />
+            <ProgressBar
+                android:id="@+id/progressBar_stocksBackground_stocksActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/recycler_stockList_stocksActivity"
+                app:layout_constraintEnd_toEndOf="@id/recycler_stockList_stocksActivity"
+                app:layout_constraintTop_toTopOf="@id/recycler_stockList_stocksActivity"
+                app:layout_constraintBottom_toBottomOf="@id/recycler_stockList_stocksActivity"
+                android:visibility="gone"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

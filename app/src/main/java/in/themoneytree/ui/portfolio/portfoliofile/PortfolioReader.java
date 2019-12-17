@@ -36,7 +36,7 @@ public class PortfolioReader {
         if (file.exists()) {
             System.out.println("File Exists - " + filePath);
         } else {
-            System.out.println("File Khaan hai Bhai? - " + filePath);
+            return;
         }
         try (FileReader reader = new FileReader(file)) {
             //Read JSON file

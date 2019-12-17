@@ -151,6 +151,17 @@
                 app:layout_constraintTop_toBottomOf="@id/txt_portfolioTitle_homeActivity" />
 
             <ImageView
+                android:id="@+id/img_chartPlaceholder_homeActivity"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/chart_allocation_homeActivity"
+                app:layout_constraintEnd_toEndOf="@id/chart_allocation_homeActivity"
+                app:layout_constraintStart_toStartOf="@id/chart_allocation_homeActivity"
+                app:layout_constraintTop_toTopOf="@id/chart_allocation_homeActivity" />
+
+
+            <ImageView
                 android:id="@+id/line_portfolioBottom_homeActivity"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"

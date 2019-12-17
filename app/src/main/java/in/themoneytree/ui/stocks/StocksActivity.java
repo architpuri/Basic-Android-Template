@@ -3,6 +3,7 @@ package in.themoneytree.ui.stocks;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -46,6 +47,8 @@ public class StocksActivity extends BaseActivity {
     TextView txtValueRisk;
     @BindView(R.id.txt_investorType_stocks)
     TextView txtInvestorType;
+    @BindView(R.id.progressBar_stocksBackground_stocksActivity)
+    ProgressBar progressBar;
     private List<Stocks> recommendedStocks = new ArrayList<>();
     private Integer timeScore = 0;
     private Integer riskScore = 0;
@@ -84,12 +87,11 @@ public class StocksActivity extends BaseActivity {
 
     void setUpScreen() {
         setRecyclerView();
-        txtInvestorType.setText(""+"Class - 1 Aggresive Risk Profile");
-        txtValueRisk.setText(""+riskScore);
-        txtValueTime.setText(""+timeScore);
+        txtValueRisk.setText("" + riskScore);
+        txtValueTime.setText("" + timeScore);
     }
 
-    void getScreenData(){
+    void getScreenData() {
         fetchScores();
     }
 
@@ -123,6 +125,7 @@ public class StocksActivity extends BaseActivity {
     }
 
     private boolean fetchRecommendedStocks() {
+        progressBar.setVisibility(View.VISIBLE);
         Integer userId = Integer.parseInt(PrefManager.getInstance(getApplicationContext()).getUserId());
         MoneyService moneyService = ApiClient.getInstance();
         Call<StockListResponse> stocksRequest = moneyService.getRecommendedStocks(userId, timeScore, riskScore);
@@ -131,6 +134,7 @@ public class StocksActivity extends BaseActivity {
             public void onResponse(Call<StockListResponse> call, Response<StockListResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getGeneralResponse().getStatusCode() == ApiConstants.SUCCESS) {
+                        txtInvestorType.setText(response.body().getGeneralResponse().getMessage());
                         List<Stocks> stockList = response.body().getStocks();
                         if (stockList != null && stockList.size() > 0) {
                             recommendedStocks = stockList;
@@ -147,11 +151,13 @@ public class StocksActivity extends BaseActivity {
                 } else {
                     Log.d(TAG, "Not Success");
                 }
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<StockListResponse> call, Throwable t) {
                 CommonUtils.showToast(StocksActivity.this, "Failure Check Internet");
+                progressBar.setVisibility(View.GONE);
             }
         });
         return true;

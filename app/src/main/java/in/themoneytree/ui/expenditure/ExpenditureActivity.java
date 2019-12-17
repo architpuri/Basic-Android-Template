@@ -221,7 +221,7 @@ public class ExpenditureActivity extends BaseActivity {
             public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getStatusCode() == ApiConstants.SUCCESS) {
-
+                            setExpenseSpinner();
                     } else {
                         CommonUtils.showToast(getApplicationContext(), response.body().getMessage());
                     }

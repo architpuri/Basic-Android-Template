@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="AGE"
+            android:inputType="number"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/textSize_25"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_10"
             android:layout_marginTop="@dimen/margin25"
+
             app:layout_constraintTop_toBottomOf="@id/txt_q1_corpus_retirement">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -39,7 +41,6 @@
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="Current Age (eg 35 yrs)"
                 android:inputType="number"
-                android:text="35"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -60,7 +61,6 @@
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="Desired Retirement Age (eg 60 yrs)"
                 android:inputType="number"
-                android:text="60"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -92,7 +92,6 @@
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="Monthly Expenses eg 50000"
                 android:inputType="number"
-                android:text="50000"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -113,7 +112,6 @@
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="One Time Expenses Yearly (eg 150000)"
                 android:inputType="number"
-                android:text="50000"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -134,7 +132,6 @@
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="Inflation Factor eg 5% is default"
                 android:inputType="number"
-                android:text="5"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -167,6 +164,7 @@
             <RadioButton
                 android:id="@+id/radioBtn2_q4a_retirement"
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_10"
                 android:text="Expecting Higher Expenses on travel,health and lower on entertainment"
@@ -242,7 +240,6 @@
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="Years Left To repay (eg 10 yrs)"
                 android:inputType="number"
-                android:text="5"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -263,7 +260,6 @@
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="EMI eg 10000"
                 android:inputType="number"
-                android:text="10000"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -362,7 +358,6 @@
                 android:drawableLeft="@drawable/ic_question"
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="Goal"
-                android:text="YOLO"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -383,7 +378,6 @@
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="Future Costs (eg 1000000)"
                 android:inputType="number"
-                android:text="500000"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -450,7 +444,6 @@
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="Monthly Pension (eg 0)"
                 android:inputType="number"
-                android:text="0"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -471,7 +464,6 @@
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="Monthly Rent (eg 10000)"
                 android:inputType="number"
-                android:text="15000"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -492,7 +484,6 @@
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="Monthly Allowance (eg 0)"
                 android:inputType="number"
-                android:text="0"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -513,7 +504,6 @@
                 android:drawablePadding="@dimen/padd_5"
                 android:hint="Other Sources (eg 10000)"
                 android:inputType="number"
-                android:text="0"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textSize_20" />
         </com.google.android.material.textfield.TextInputLayout>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -133,6 +134,7 @@ public class PortfolioActivity extends BaseActivity {
                 CommonUtils.showToast(getApplicationContext(), "No Investments Done Till Now");
             else {
                 setUpInvestmentsRecycler(investments);
+                setTotalInvestments(investments);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -336,20 +338,27 @@ public class PortfolioActivity extends BaseActivity {
         //Building dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(layout);
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Save",null); /*new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount) && CommonUtils.isNumber(tRate, rate)) {
+                *//*if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount) && CommonUtils.isNumber(tRate, rate)) {
                     Investment investments = new Investment(UniqueIdGenerator.getId(getApplicationContext()), name.getText().toString(),
                             Double.parseDouble(amount.getText().toString()), expiryDate.getText().toString(),
                             Double.parseDouble(rate.getText().toString()), positionInvestmentSpinner,
                             extraInfo.getText().toString());
                     PortfolioEditor.addInvestment(filePath, investments);
+                    Log.d(TAG,"Saved - "+investments.getInvestmentName());
                     updateUI();
                     dialog.dismiss();
-                }
+                }else{
+                    if(CommonUtils.checkEmptyInput(edits,layouts)){
+                        Log.d(TAG, "List is BackChodi");
+                    }else {
+                        Log.d(TAG, "BackChodi");
+                    }
+                }*//*
             }
-        });
+        });*/
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -357,7 +366,38 @@ public class PortfolioActivity extends BaseActivity {
                 dialog.dismiss();
             }
         });
+
         AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+
+                Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                button.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount) && CommonUtils.isNumber(tRate, rate)) {
+                            Investment investments = new Investment(UniqueIdGenerator.getId(getApplicationContext()), name.getText().toString(),
+                                    Double.parseDouble(amount.getText().toString()), expiryDate.getText().toString(),
+                                    Double.parseDouble(rate.getText().toString()), positionInvestmentSpinner,
+                                    extraInfo.getText().toString());
+                            PortfolioEditor.addInvestment(filePath, investments);
+                            Log.d(TAG,"Saved - "+investments.getInvestmentName());
+                            updateUI();
+                            dialog.dismiss();
+                        }else{
+                            if(CommonUtils.checkEmptyInput(edits,layouts)){
+                                Log.d(TAG, "List is BackChodi");
+                            }else {
+                                Log.d(TAG, "BackChodi");
+                            }
+                        }
+                    }
+                });
+            }
+        });
         dialog.show();
     }
 
@@ -391,7 +431,7 @@ public class PortfolioActivity extends BaseActivity {
         layouts.add(tInfo);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(layout);
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Save", null);/*new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount)) {
@@ -404,7 +444,7 @@ public class PortfolioActivity extends BaseActivity {
                     dialog.dismiss();
                 }
             }
-        });
+        });*/
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -413,6 +453,29 @@ public class PortfolioActivity extends BaseActivity {
             }
         });
         AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+
+                Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                button.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount)) {
+                            Transaction transact = new Transaction(UniqueIdGenerator.getId(getApplicationContext()), Double.parseDouble(amount.getText().toString()),
+                                    name.getText().toString(), method.getText().toString(),
+                                    receiver.getText().toString(), date.getText().toString(),
+                                    info.getText().toString());
+                            PortfolioEditor.addTransaction(filePath, transact);
+                            updateUI();
+                            dialog.dismiss();
+                        }
+                    }
+                });
+            }
+        });
         dialog.show();
     }
 
@@ -444,7 +507,7 @@ public class PortfolioActivity extends BaseActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(layout);
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Save",null);/* new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount) && CommonUtils.isNumber(tFrequency, frequency) && CommonUtils.isNumber(tType, type)) {
@@ -456,7 +519,7 @@ public class PortfolioActivity extends BaseActivity {
                     dialog.dismiss();
                 }
             }
-        });
+        });*/
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -465,6 +528,27 @@ public class PortfolioActivity extends BaseActivity {
             }
         });
         AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+
+                Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount) && CommonUtils.isNumber(tFrequency, frequency) && CommonUtils.isNumber(tType, type)) {
+                            IncomeStream stream = new IncomeStream(UniqueIdGenerator.getId(getApplicationContext()), userId, name.getText().toString(),
+                                    Double.parseDouble(amount.getText().toString()), Integer.parseInt(frequency.getText().toString()),
+                                    info.getText().toString(), Integer.parseInt(type.getText().toString()));
+                            PortfolioEditor.addIncomeStream(filePath, stream);
+                            updateUI();
+                            dialog.dismiss();
+                        }
+                    }
+                });
+            }
+        });
         dialog.show();
     }
 
@@ -595,7 +679,7 @@ public class PortfolioActivity extends BaseActivity {
         //Building dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(layout);
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Save",null);/*, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount) && CommonUtils.isNumber(tRate, rate)) {
@@ -610,7 +694,8 @@ public class PortfolioActivity extends BaseActivity {
                     dialog.dismiss();
                 }
             }
-        });
+        });*/
+
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -618,6 +703,31 @@ public class PortfolioActivity extends BaseActivity {
             }
         });
         AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+
+                Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                button.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount) && CommonUtils.isNumber(tRate, rate)) {
+                            Investment investments = new Investment(investment.getInvestmentId(), name.getText().toString(),
+                                    Double.parseDouble(amount.getText().toString()), expiryDate.getText().toString(),
+                                    Double.parseDouble(rate.getText().toString()), positionInvestmentSpinner,
+                                    extraInfo.getText().toString());
+                            if (PortfolioEditor.removeInvestment(filePath, investment.getInvestmentId())) {
+                                PortfolioEditor.addInvestment(filePath, investments);
+                                updateUI();
+                            }
+                            dialog.dismiss();
+                        }
+                    }
+                });
+            }
+        });
         dialog.show();
     }
 
@@ -657,7 +767,7 @@ public class PortfolioActivity extends BaseActivity {
         layouts.add(tInfo);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(layout);
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Save", null);/*new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount)) {
@@ -673,7 +783,7 @@ public class PortfolioActivity extends BaseActivity {
                 }
 
             }
-        });
+        });*/
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -682,6 +792,30 @@ public class PortfolioActivity extends BaseActivity {
             }
         });
         AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                button.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount)) {
+                            Transaction transact = new Transaction(UniqueIdGenerator.getId(getApplicationContext()), Double.parseDouble(amount.getText().toString()),
+                                    name.getText().toString(), method.getText().toString(),
+                                    receiver.getText().toString(), date.getText().toString(),
+                                    info.getText().toString());
+                            if (PortfolioEditor.removeTransaction(filePath, transaction.getTransactionId())) {
+                                PortfolioEditor.addTransaction(filePath, transact);
+                                updateUI();
+                            }
+                            dialog.dismiss();
+                        }
+                    }
+                });
+            }
+        });
         dialog.show();
     }
 
@@ -717,7 +851,7 @@ public class PortfolioActivity extends BaseActivity {
         layouts.add(tInfo);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(layout);
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Save",null);/* new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount) && CommonUtils.isNumber(tFrequency, frequency) && CommonUtils.isNumber(tType, type)) {
@@ -731,7 +865,7 @@ public class PortfolioActivity extends BaseActivity {
                     }
                 }
             }
-        });
+        });*/
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -740,6 +874,30 @@ public class PortfolioActivity extends BaseActivity {
             }
         });
         AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+
+                Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                button.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if (CommonUtils.checkEmptyInput(edits, layouts) && CommonUtils.isNumber(tAmount, amount) && CommonUtils.isNumber(tFrequency, frequency) && CommonUtils.isNumber(tType, type)) {
+                            IncomeStream stream = new IncomeStream(UniqueIdGenerator.getId(getApplicationContext()), userId, name.getText().toString(),
+                                    Double.parseDouble(amount.getText().toString()), Integer.parseInt(frequency.getText().toString()),
+                                    info.getText().toString(), Integer.parseInt(type.getText().toString()));
+                            if (PortfolioEditor.removeIncomeStream(filePath, incomeStream.getStreamId())) {
+                                PortfolioEditor.addIncomeStream(filePath, stream);
+                                updateUI();
+                                dialog.dismiss();
+                            }
+                        }
+                    }
+                });
+            }
+        });
         dialog.show();
     }
 
@@ -846,4 +1004,13 @@ public class PortfolioActivity extends BaseActivity {
         return PortfolioEditor.removeInvestment(filePath, investmentId);
     }
 
+    private void setTotalInvestments(List<Investment> investments){
+        double amount =0.0;
+        if(investments != null && investments.size()>0) {
+            for (Investment i : investments) {
+                amount = amount + i.getPrincipalAmount();
+            }
+            PrefManager.getInstance(getApplicationContext()).setRetirementCorpusAmount(amount+"");
+        }
+    }
 }

@@ -99,17 +99,17 @@ public class CommonUtils {
         });
     }
 
-    public static boolean isEditTextEmpty(final TextInputLayout textInputLayout, TextInputEditText editText) {
-        if(TextUtils.isEmpty(editText.getText())) {
+    public static boolean isEditTextEmpty(TextInputLayout textInputLayout, TextInputEditText editText) {
+        if(TextUtils.isEmpty(editText.getText().toString())) {
             wrongInputErrorMsg(textInputLayout,"This Field is Mandatory",editText);
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static boolean isNumber(final TextInputLayout textInputLayout, TextInputEditText editText){
         try{
-            if(isEditTextEmpty(textInputLayout,editText)) {
+            if(!isEditTextEmpty(textInputLayout,editText)) {
                 Double.parseDouble(editText.getText().toString());
                 return true;
             }

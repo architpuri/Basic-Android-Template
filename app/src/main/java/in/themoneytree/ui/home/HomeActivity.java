@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -41,6 +43,8 @@ import in.themoneytree.ui.home.indices.IndicesAdapter;
 import in.themoneytree.ui.home.stocktape.StockScrollAdapter;
 import in.themoneytree.ui.home.stocktape.StockScrollListener;
 import in.themoneytree.ui.portfolio.PortfolioActivity;
+import in.themoneytree.ui.portfolio.portfoliofile.PortfolioReader;
+import in.themoneytree.ui.portfolio.tools.AllocationCalculator;
 import in.themoneytree.ui.retirement.RetirementActivity;
 import in.themoneytree.utils.CommonUtils;
 import in.themoneytree.utils.chart.HorizontalBarChartActivity;
@@ -60,6 +64,8 @@ public class HomeActivity extends BaseActivity {
     RecyclerView recyclerIndices;
     @BindView(R.id.chart_allocation_homeActivity)
     BarChart chartAllocation;
+    @BindView(R.id.img_chartPlaceholder_homeActivity)
+    ImageView imgChartPlaceholder;
     private StockScrollAdapter stockScrollAdapter;
     int scrollCount = 0;
     private DrawerLayout drawer;
@@ -81,7 +87,7 @@ public class HomeActivity extends BaseActivity {
         } else {
             getPortfolio();
         }
-        if(fetchStocks()){
+        if (fetchStocks()) {
             System.out.println(stocks.toString());
         }
         fabDrawerOpen.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +99,7 @@ public class HomeActivity extends BaseActivity {
         });
     }
 
-    private void setStocksBasedStuff(){
+    private void setStocksBasedStuff() {
         setUpTape();
         fetchIndices();
     }
@@ -131,13 +137,30 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void setUpAllocationChart() {
-        ArrayList<String> labels = (ArrayList<String>) getInstrumentList();
-        ArrayList<Float> values = getPortfolioAllocation();
-        chartAllocation = HorizontalBarChartActivity.barChartDesigner(chartAllocation, labels, values);
-        if (chartAllocation != null) {
-            chartAllocation.invalidate();
+        PortfolioReader.readPortfolio(getFilesDir().getPath().toString() + "/portfolio.json");
+        Pair<ArrayList<String>, ArrayList<Double>> p = AllocationCalculator.getPortfolioAllocation(PortfolioReader.getInvestments());
+        if (p == null) {
+            imgChartPlaceholder.setVisibility(View.VISIBLE);
+            return;
+        }
+        imgChartPlaceholder.setVisibility(View.GONE);
+        ArrayList<String> labels = p.first;
+        ArrayList<Double> valueDouble = p.second;
+        if (valueDouble != null && valueDouble.size() > 0) {
+            ArrayList<Float> values = new ArrayList<>();
+            for (Double d : valueDouble) {
+                values.add(Float.parseFloat(d.toString()));
+            }
+            chartAllocation = HorizontalBarChartActivity.barChartDesigner(chartAllocation, labels, values);
+            if (chartAllocation != null) {
+                chartAllocation.invalidate();
+            } else {
+                Log.d(TAG, "Bar Chart Null");
+                imgChartPlaceholder.setVisibility(View.VISIBLE);
+            }
         } else {
-            Log.d(TAG, "Bar Chart Null");
+            chartAllocation.setVisibility(View.GONE);
+            imgChartPlaceholder.setVisibility(View.VISIBLE);
         }
     }
 
@@ -214,7 +237,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void setUpTape() {
-        if(stocks!=null && stocks.size()>0) {
+        if (stocks != null && stocks.size() > 0) {
             stockScrollAdapter = new StockScrollAdapter(HomeActivity.this, stocks, new StockScrollListener() {
             });
             recyclerStockTape.setAdapter(stockScrollAdapter);
@@ -255,22 +278,22 @@ public class HomeActivity extends BaseActivity {
                 if (response.isSuccessful()) {
                     if (response.body().getGeneralResponse().getStatusCode() == ApiConstants.SUCCESS) {
                         List<Stocks> stockList = response.body().getStocks();
-                        Log.d(TAG,response.body().toString());
-                        if(stockList!=null && stockList.size()>0){
+                        Log.d(TAG, response.body().toString());
+                        if (stockList != null && stockList.size() > 0) {
                             stocks = stockList;
                             setStocksBasedStuff();
-                            Log.d(TAG,"Here1");
-                        }else{
-                            if(stockList==null){
-                                Log.d(TAG,"Null it is");
+                            Log.d(TAG, "Here1");
+                        } else {
+                            if (stockList == null) {
+                                Log.d(TAG, "Null it is");
                             }
-                            Log.d(TAG,"Stock List");
+                            Log.d(TAG, "Stock List");
                         }
-                    }else{
-                        Log.d(TAG,"General Response");
+                    } else {
+                        Log.d(TAG, "General Response");
                     }
-                }else{
-                    Log.d(TAG,"Not Success");
+                } else {
+                    Log.d(TAG, "Not Success");
                 }
             }
 
@@ -290,7 +313,7 @@ public class HomeActivity extends BaseActivity {
         return true;
     }
 
-    private boolean fetchIndices(){
+    private boolean fetchIndices() {
         Integer userId = Integer.parseInt(PrefManager.getInstance(getApplicationContext()).getUserId());
         MoneyService moneyService = ApiClient.getInstance();
         Call<StockListResponse> stocksRequest = moneyService.getIndices(userId);
@@ -300,20 +323,20 @@ public class HomeActivity extends BaseActivity {
                 if (response.isSuccessful()) {
                     if (response.body().getGeneralResponse().getStatusCode() == ApiConstants.SUCCESS) {
                         List<Stocks> stockList = response.body().getStocks();
-                        if(stockList!=null && stockList.size()>0){
+                        if (stockList != null && stockList.size() > 0) {
                             indices = stockList;
                             setUpScreen();
-                        }else{
-                            if(stockList==null){
-                                Log.d(TAG,"Null it is");
+                        } else {
+                            if (stockList == null) {
+                                Log.d(TAG, "Null it is");
                             }
-                            Log.d(TAG,"Stock List");
+                            Log.d(TAG, "Stock List");
                         }
-                    }else{
-                        Log.d(TAG,"General Response");
+                    } else {
+                        Log.d(TAG, "General Response");
                     }
-                }else{
-                    Log.d(TAG,"Not Success");
+                } else {
+                    Log.d(TAG, "Not Success");
                 }
             }
 
@@ -325,7 +348,7 @@ public class HomeActivity extends BaseActivity {
         return true;
     }
 
-    private void setUpCorpus(){
+    private void setUpCorpus() {
         TextView txtRetirementTitle = findViewById(R.id.txt_corpusTitle_homeActivity);
         txtRetirementTitle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -338,26 +361,29 @@ public class HomeActivity extends BaseActivity {
         TextView txtRetirementGoal = findViewById(R.id.txt_goalCorpus_homeActivity);
         TextView txtProgress = findViewById(R.id.txt_progress);
         ProgressBar progressBar = findViewById(R.id.progress);
-        Double goal=0.0,amount=0.0;
+        Double goal = 0.0, amount = 1.0;
         try {
             amount = Double.parseDouble(PrefManager.getInstance(getApplicationContext()).getRetirementCorpusAmount());
+            if (amount == 0.0) {
+                amount = 1.0;
+            }
             goal = Double.parseDouble(PrefManager.getInstance(getApplicationContext()).getRetirementCorpusGoal());
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        int progressValue =0;
-        if(goal!=0.0) {
-            Double d = amount / goal;
-            progressValue = d.intValue();
+        int progressValue = 0;
+        if (goal != 0.0) {
+            int d = ((amount.intValue()*100))/ (goal.intValue());
+            progressValue = d;
         }
         progressBar.setProgress(progressValue + 1);
         txtProgress.setText("" + progressValue + "%");
-        txtRetirementAmount.setText("Current - "+amount);
-        txtRetirementGoal.setText("Goal - "+goal);
+        txtRetirementAmount.setText("Current - " + amount.intValue());
+        txtRetirementGoal.setText("Goal - " + goal.intValue());
     }
 
-    private void setUpPortfolio(){
-        TextView txtPortfolioTitle =findViewById(R.id.txt_portfolioTitle_homeActivity);
+    private void setUpPortfolio() {
+        TextView txtPortfolioTitle = findViewById(R.id.txt_portfolioTitle_homeActivity);
         txtPortfolioTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

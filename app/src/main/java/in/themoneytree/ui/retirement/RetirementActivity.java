@@ -185,6 +185,9 @@ public class RetirementActivity extends BaseActivity {
         ButterKnife.bind(this);
         try {
             amount = Double.parseDouble(PrefManager.getInstance(getApplicationContext()).getRetirementCorpusAmount());
+            if(amount==0.0){
+                amount =1.0;
+            }
             goal = Double.parseDouble(PrefManager.getInstance(getApplicationContext()).getRetirementCorpusGoal());
         }catch(Exception e){
             e.printStackTrace();
@@ -203,7 +206,7 @@ public class RetirementActivity extends BaseActivity {
                     goal = calculateCorpusAmount();
                     if (goal != 0.0) {
                         txtCorpusAmount.setVisibility(View.VISIBLE);
-                        txtCorpusAmount.setText("Corpus Amount is - " + goal);
+                        txtCorpusAmount.setText("Corpus Amount is - " + goal.intValue());
                         PrefManager.getInstance(getApplicationContext()).setRetirementCorpusGoal(goal + "");
                     }
                     isCalculationActive = false;
@@ -293,11 +296,11 @@ public class RetirementActivity extends BaseActivity {
     }
 
     private void setUpProgress(Double corpusAmount, Double corpusGoal) {
-        Double d = corpusAmount / corpusGoal;
-        int progressValue = d.intValue();
+        int d = ((corpusAmount.intValue())*100) / (corpusGoal.intValue());
+        int progressValue = d;
         progressCorpusAmount.setProgress(progressValue + 1);
         txtProgress.setText("" + progressValue + "%");
-        txtCorpusAmount.setText("Corpus Amount Till Now - "+corpusAmount);
-        txtCorpusGoal.setText("Corpus Goal - "+corpusGoal);
+        txtCorpusAmount.setText("Corpus Amount Till Now - "+corpusAmount.intValue());
+        txtCorpusGoal.setText("Corpus Goal - "+corpusGoal.intValue());
     }
 }
